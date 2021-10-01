@@ -1,0 +1,142 @@
+.container {
+	margin-top: 71px;
+	background: white;
+	text-align: left;
+	text-decoration: none;
+	position: relative;
+}
+
+.breadcrumbsContainer {
+	margin-bottom: auto;
+	padding: 40px 185px;
+}
+
+.breadcrumbs {
+	color: var(--font-main-color) !important;
+	font-size: 16px !important;
+	font-family: var(--font-openSans) !important;
+	text-transform: capitalize;
+	margin-bottom: 25px !important;
+}
+
+.typography {
+	color: var(--font-main-color) !important;
+	font-size: 16px !important;
+	font-family: var(--font-openSans) !important;
+}
+
+.courseHeading {
+	font-family: Arial, Helvetica, sans-serif !important;
+	text-transform: capitalize;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.filterContainer {
+	background: rgb(247 247 247);
+	padding: 15px 185px;
+}
+
+.filterContainer p {
+	margin: auto;
+	font-size: 14px;
+	font-weight: 200;
+	padding: 15px 0px;
+}
+
+.totalCount {
+	color: rgb(31, 31, 31);
+	line-height: 1.5rem;
+	font-family: "Source Sans Pro", Arial, sans-serif;
+	font-weight: 600;
+	letter-spacing: -0.1px;
+	width: -moz-fit-content;
+	width: fit-content;
+	padding-right: 80px;
+	/* padding-left: 20px; */
+	margin-bottom: 0px;
+	font-size: 16px;
+}
+
+h2 {
+	margin: 0;
+}
+
+.filterSection {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.filterBox {
+	border: 1px solid #f9f9f9;
+	flex: auto;
+	font-family: "Source Sans Pro", Arial, sans-serif;
+	margin-right: 25px;
+	padding: 8px 10px;
+	background: white;
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	font-weight: 600;
+	max-width: 200px;
+	position: relative;
+	font-size: 14px;
+}
+
+.filterDownArrow {
+	font-size: 20px !important;
+	color: #505050;
+}
+
+.checkboxes {
+	position: absolute;
+	/* display: none; */
+	visibility: hidden;
+	outline: 1px #dadada solid;
+	top: 40px;
+	left: 0;
+	width: max-content;
+	min-width: 200px;
+	background: white;
+	padding: 5px;
+	max-height: 132px;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+.checkboxes label {
+	font-size: 14px;
+	font-weight: 500;
+	font-family: "Open Sans";
+	display: flex;
+	align-items: center;
+	padding: 3px 5px;
+}
+
+.checkboxes input {
+	padding: 10px;
+}
+
+.checkboxes label:hover {
+	background-color: #d6eaff;
+}
+
+.courseListContainer {
+	background: white;
+	padding: 15px 185px;
+	margin: 30px 0px;
+	padding-bottom: 32px;
+}
+
+
+
+.pagination {
+	background: white;
+	padding: 15px 185px;
+	margin: 30px 0px;
+	padding-bottom: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

@@ -1,0 +1,108 @@
+.banner {
+	background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgd2lkdGg9IjUxMyIgaGVpZ2h0PSI4OTUiIHZpZXdCb3g9IjAgMCA1MTMgODk1IiBmaWxsPSIjMDAzNTZCIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxtYXNrIGlkPSJtYXNrMCIgbWFzay10eXBlPSJhbHBoYSIgbWFza1VuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMyIgaGVpZ2h0PSI4OTUiPjxyZWN0IHdpZHRoPSI1MTMiIGhlaWdodD0iODk1IiBmaWxsPSIjMDAzNTZCIi8+PC9tYXNrPjxnIG1hc2s9InVybCgjbWFzazApIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTS00OC45MjAyIC00MzEuOTQzQzQ0OS45MjUgLTQzMS45NDMgODQ5IC0zMi4yNjc1IDg0OSA0NDkuNDk2Qzg0OSA5MzguNDAxIDQ0OS45MjUgMTMzMC45NCAtNDguOTIwMyAxMzMwLjk0Qy0zNjkuNTk4IDEzMzAuOTQgLTY0Ny41NCAxMTcwLjM1IC04MDcuODc1IDkyNy42OUwtNDMzLjc0MSA3MTAuMDFDLTM0OC4yMjYgODMxLjMzOCAtMjA5LjI3MSA5MDkuODUgLTQ4LjkyMDMgOTA5Ljg1QzIwNy42MjYgOTA5Ljg1IDQxNy44NTkgNjk1LjcyOCA0MTcuODU5IDQ0OS40OTZDNDE3Ljg1OSAyMDMuMjcgMjA3LjYyNiAtMTAuODQ5OCAtNDguOTIwMiAtMTAuODQ5OEMtMjE2LjM4OCAtMTAuODQ5OCAtMzYyLjQ3OSA3NC43OTQ3IC00NDQuNDMyIDIwNi44NDdMLTgxNSAtMTQuNDIxN0MtNjU4LjIxNSAtMjY0LjIwNyAtMzczLjE3MiAtNDMxLjk0MyAtNDguOTIwMiAtNDMxLjk0M1oiIGZpbGw9IiMwMDM1NkIiLz48L2c+PC9zdmc+");
+	-webkit-box-direction: normal;
+	-webkit-box-orient: vertical;
+	text-align: left;
+	position: relative;
+	background-color: rgb(239 239 239);
+	display: flex;
+	flex-direction: row;
+	background-position-x: right, right;
+	background-position-y: center, center;
+	background-repeat: no-repeat, no-repeat;
+
+	height: 500px;
+	width: -webkit-fill-available;
+
+	.bannerBody {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		padding-left: 50px;
+
+		.bannerTitle {
+			color: var(--font-main-color);
+			padding-top: 100px;
+			font-family: "Open Sans";
+			font-size: 36px;
+			font-weight: 700;
+		}
+
+		.ratingInfo {
+			display: flex;
+			flex-direction: row;
+			padding: 20px 0px;
+			align-items: center;
+
+			.ratingTotal {
+				font-size: 20px;
+				font-weight: 600;
+				margin-right: 15px;
+			}
+
+			.ratingStar {
+				color: #d6aa07;
+				font-size: 20px;
+			}
+
+			.ratedBy {
+				font-size: 14px;
+				margin-left: 15px;
+			}
+		}
+
+		.enrolledBy,
+		.instructor,
+		.subTitles {
+			font-size: 14px;
+			margin: 0;
+			padding: 5px 0px;
+			max-width: 600px;
+		}
+
+		.bannerBtn {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			margin-top: 35px;
+
+			.enrollForFreeBtn {
+				background: var(--main-color);
+				border: none;
+				padding: 25px 35px;
+				color: white;
+				font-family: "Open Sans";
+				font-size: 16px;
+				font-weight: 600;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: all 0.2s ease-in;
+
+				&:hover {
+					background: rgb(50, 50, 206);
+				}
+			}
+		}
+	}
+
+	.bannerOfferBy {
+		display: flex;
+		flex-direction: column;
+		padding-top: 100px;
+		flex: 1;
+
+		.offerByText {
+			color: #888888;
+			font-size: 16px;
+			font-weight: 400;
+		}
+
+		.bannerUniversity {
+			color: #1a4ca9;
+			font-size: 37px;
+			max-width: 450px;
+			font-weight: 500;
+			font-family: "Nunito";
+		}
+	}
+}

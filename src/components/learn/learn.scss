@@ -1,0 +1,153 @@
+.learnWrapper {
+	margin: 71px 0px;
+	font-family: var(--font-openSans);
+	color: var(--font-main-color);
+	background: white;
+
+	.courseDetails {
+		display: flex;
+		flex-direction: row;
+		text-align: left;
+		color: #404040;
+
+		.leftPart {
+			flex: 2;
+
+			padding: 50px;
+			float: left;
+
+			.aboutCourseTitle {
+				color: #404040;
+				font-size: 24px;
+				font-weight: 500;
+				margin: 0;
+				margin-bottom: 5px;
+			}
+
+			.aboutCourseDetail {
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 23px;
+				margin-top: 20px;
+				text-align: justify;
+			}
+
+			.skillWrapper {
+				border: 1px solid #e2e2e2;
+				margin: 32px 0px;
+				padding: 25px;
+				border-radius: 5px;
+				font-weight: 700;
+				color: #6e767f;
+				font-size: 14px;
+				margin-top: 60px;
+
+				.skillGain {
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					margin: 28px 0px 5px 0px;
+
+					.skill {
+						background: #e6e6e6;
+						color: var(--font-main-color);
+						font-size: 14px;
+						font-weight: 400;
+						padding: 5px 10px;
+						border-radius: 50px;
+						text-transform: capitalize;
+						margin-right: 15px;
+					}
+				}
+			}
+		}
+
+		.rightPart {
+			flex: 1;
+			padding: 50px;
+			display: flex;
+			flex-direction: column;
+
+			.infoTag {
+				display: flex;
+				flex-direction: row;
+				align-items: flex-start;
+				margin: 20px 0px;
+
+				.infoIcon {
+					color: var(--main-color);
+					font-size: 25px;
+					padding: 10px;
+					border: 2px solid #e2e2e2;
+					border-radius: 50%;
+					margin-right: 10px;
+				}
+
+				.infoDetail {
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					margin-left: 10px;
+
+					.infoTitle {
+						font-size: 20px;
+						color: var(--font-main-color);
+						font-weight: 600;
+					}
+
+					.infoCaption {
+						color: #929292;
+						font-size: 14px;
+						text-align: justify;
+						font-weight: 400;
+					}
+				}
+			}
+		}
+	}
+
+	.instructorWrapper {
+		border: 1px solid gray;
+		color: #404040;
+		text-align: left;
+		padding: 10px 50px;
+
+		.instructorHeading {
+			color: black;
+		}
+
+		.instructorRating {
+			margin: 0;
+		}
+
+		.instructorInfoWrapper {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+
+			.instructorImg {
+				height: 200px;
+				width: 200px;
+			}
+
+			.instructorInfo {
+				text-align: left;
+				display: flex;
+				flex-direction: column;
+
+				.instructorName {
+					font-size: 14px;
+				}
+
+				.instructorProfession {
+					margin: 0;
+				}
+
+				.totalLearner,
+				.totalCourse {
+					font-size: 14px;
+				}
+			}
+		}
+	}
+}

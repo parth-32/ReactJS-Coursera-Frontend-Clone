@@ -1,0 +1,120 @@
+.right_category_courses {
+	flex: 2 1;
+	margin-right: 100px;
+	height: -webkit-fill-available;
+	background: white;
+
+	padding: 50px;
+	text-align: left;
+	overflow: hidden;
+	overflow-y: scroll;
+	font-family: var(--font-openSans);
+}
+
+ul {
+	list-style: none;
+}
+
+p {
+	margin: auto;
+}
+
+.topic_title {
+	display: flex;
+	align-items: flex-start;
+	border-bottom: 1px solid #dedede;
+	padding-bottom: 5px;
+	margin: auto;
+	color: #1d1d1d;
+	margin-top: 10px;
+}
+
+.part ul li {
+	padding: 5px 0px;
+	font-size: 14px;
+	margin-left: -40px;
+}
+
+h3 {
+	color: #232323;
+	margin: auto;
+	margin-bottom: 20px;
+	text-transform: capitalize;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	margin-top: 25px;
+}
+
+.firstPart {
+	display: flex;
+	flex-direction: column;
+	margin-right: 7%;
+	flex: 0.3;
+}
+
+.secondPart {
+	display: block;
+}
+
+.secondPart ul li {
+	margin-left: -40px;
+	display: flex;
+
+	margin-top: 5px;
+}
+
+.logo {
+	align-items: flex-start;
+	/* height: 45px; */
+	width: 45px;
+}
+
+.logo img {
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	height: 45px;
+	width: 45px;
+}
+
+.content {
+	text-align: left;
+	width: -webkit-fill-available;
+	margin-left: 10px;
+}
+
+.university {
+	color: gray;
+	font-size: 12px;
+	text-align: left;
+}
+
+.course {
+	font-size: 14px;
+	color: var(--font-main-color);
+	width: 250px;
+	height: fit-content;
+}
+
+.subjectTitle {
+	float: left;
+}
+
+.close {
+	float: right;
+	color: var(--font-main-color);
+	cursor: pointer;
+}
+
+.headerMain {
+	position: absolute;
+	width: 60%;
+	top: 15px;
+}
+
+.link {
+	text-decoration: none;
+	color: var(--font-main-color);
+}

@@ -1,0 +1,69 @@
+.topicSkillContainer {
+	padding: 20px 185px;
+	margin: auto;
+	position: relative;
+	margin-top: 100px;
+
+	h2 {
+		text-align: left;
+		padding: 20px 0px;
+		font-weight: 500;
+	}
+
+	.cardContainerMain {
+		// background: gray;
+		height: 340px;
+		width: 360px !important;
+		display: flex !important;
+		flex-direction: column;
+		justify-content: space-between;
+		position: relative;
+
+		img {
+			height: 100%;
+			width: 100%;
+		}
+
+		span {
+			font-size: 24px;
+			position: absolute;
+			color: white;
+			background: rgba(0, 0, 0, 0.5);
+			height: -webkit-fill-available;
+			width: -webkit-fill-available;
+			text-align: left;
+			padding: 40px;
+			text-transform: capitalize;
+		}
+
+		.subCard {
+			// background: white !important;
+			height: -webkit-fill-available;
+			position: relative;
+
+			span {
+				font-size: 24px;
+				position: absolute;
+				color: white;
+				background: rgba(0, 0, 0, 0.5);
+				height: -webkit-fill-available;
+				width: -webkit-fill-available;
+				text-align: left;
+				padding: 40px;
+				left: 0;
+				text-transform: capitalize;
+				top: 0;
+				bottom: 0;
+				right: 0;
+			}
+
+			&.up {
+				margin-bottom: 10px;
+			}
+
+			&.down {
+				margin-top: 10px;
+			}
+		}
+	}
+}

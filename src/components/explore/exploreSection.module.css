@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+
+.explore_container {
+	margin-top: 71px;
+	/* position: fixed; */
+	background-color: rgba(0, 0, 0, 0.5);
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-family: "Open Sans", sans-serif;
+	z-index: 1;
+	/* position: absolute;
+	top: -30px; */
+}
+
+.left_category {
+	background: var(--bg-main);
+	margin-left: 50px;
+	flex: 0.8;
+	max-width: 25%;
+	box-shadow: var(--main-shadow);
+	height: 100vh;
+	overflow: hidden;
+	overflow-y: scroll;
+	text-align: left;
+	position: relative;
+}
+
+.title {
+	padding: 0px 20px;
+}
+
+.left_category ul {
+	list-style: none;
+	margin-left: -40px;
+}
+
+.left_category ul li {
+	padding: 0px 15px;
+}
+
+.left_category ul li:hover {
+	box-shadow: -2px 2px 5px rgba(228, 228, 228, 0.5);
+	background: rgb(250, 250, 250);
+}
+
+.left_category ul li:hover button {
+	color: var(--main-color);
+}
+
+.subject_button {
+	display: flex;
+	align-items: center;
+	width: -webkit-fill-available;
+	justify-content: space-between;
+	border: none;
+	padding: 5px;
+	color: #313131;
+	font-size: 14px;
+	font-family: "Open Sans";
+	background: transparent;
+	font-weight: 400;
+}
+
+.browseAll {
+	background: var(--main-color);
+	outline: none;
+	border: none;
+	color: white;
+	padding: 10px 15px;
+	font-size: 14px;
+	font-weight: 600;
+	font-family: "Open Sans";
+	margin: 32px 20px;
+	cursor: pointer;
+}
+
+.browseAll:hover {
+	background: rgb(63, 63, 189);
+	color: white;
+	transition: 0.2s all ease-in;
+}

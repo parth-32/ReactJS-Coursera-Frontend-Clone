@@ -7,10 +7,10 @@ const CourseItem = (props) => {
 	const { data: course } = props;
 
 	return (
-		<Link className={cls.learnLink} to={`/learn/${course.id}`}>
+		<Link className={cls.learnLink} to={`/learn/${course._id}`}>
 			<div className={cls.courseItem}>
 				<div className={cls.courseImage}>
-					<img src={course.logo} alt="course"></img>
+					<img src={course.thumbnail} alt="course"></img>
 				</div>
 				<div className={cls.courseDetails}>
 					<h3>{course.title}</h3>
@@ -27,7 +27,7 @@ const CourseItem = (props) => {
 								{course.rating}
 							</span>
 							<span className={cls.ratingCount}>
-								({course.rated_by})
+								({course.rated_by.length})
 							</span>
 							<span className={cls.enrolledCount}>
 								{course.enroll_count} students

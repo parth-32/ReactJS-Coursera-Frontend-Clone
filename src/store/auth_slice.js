@@ -1,8 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+var token;
+var isAuthenticated;
+if (
+	localStorage.getItem("token") === undefined ||
+	localStorage.getItem("token") === false ||
+	localStorage.getItem("token") === null
+) {
+	token = localStorage.removeItem("token");
+	token = null;
+	isAuthenticated = false;
+} else {
+	token = localStorage.getItem("token");
+	isAuthenticated = true;
+}
+
 const initialState = {
-	token: localStorage.getItem("token"),
-	isAuthenticated: !!localStorage.getItem("token"),
+	token: token,
+	isAuthenticated: isAuthenticated,
 };
 
 const authSlice = createSlice({

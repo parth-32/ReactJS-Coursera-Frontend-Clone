@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./mainSlider.scss";
 // import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
+import { api_getCategory } from "../../helper/api_call.helper";
+
+// eslint-disable-next-line no-unused-vars
 const BC_IMAGES = [
 	{
 		id: "data_science",
@@ -56,16 +60,17 @@ const BC_IMAGES = [
 	},
 ];
 
-const getCardBG = (id) => {
-	const arr = BC_IMAGES.filter((data) => data.id === id);
-	return arr[0].bg;
-};
-
-const getCardTopic = (id) => {
-	return id.split("_").join(" ");
-};
-
 const MainSlider = () => {
+	const [data, setData] = useState([]);
+
+	useEffect(() => {
+		async function getData() {
+			return await api_getCategory();
+		}
+
+		getData().then((data) => setData(data.data.data));
+	}, []);
+	console.log(data);
 	var settings = {
 		dots: true,
 		infinite: false,
@@ -79,63 +84,29 @@ const MainSlider = () => {
 		<div className="topicSkillContainer">
 			<h2>Explore Topics and Skills</h2>
 			<Slider {...settings}>
-				<div className="cardContainerMain">
-					<img src={getCardBG("data_science")} alt="ig" />
-					<span>{getCardTopic("data_science")}</span>
-				</div>
-				<div className="cardContainerMain">
-					<div className="subCard up">
-						<img src={getCardBG("business")} alt="ig" />
-						<span>{getCardTopic("business")}</span>
-					</div>
+				{data.length > 0 &&
+					data.map((data) => {
+						return (
+							<div className="cardContainerMain">
+								<Link to={`/course/${data._id}`}>
+									<img src={data.image} alt="ig" />
+									<span>{data.name}</span>
+								</Link>
+							</div>
+						);
+					})}
+				{/* <div className="cardContainerMain">
+					<Link to="/course/business">
+						<div className="subCard up">
+							<img src={getCardBG("business")} alt="ig" />
+							<span>{getCardTopic("business")}</span>
+						</div>
+					</Link>
 					<div className="subCard down">
 						<img src={getCardBG("computer_science")} alt="ig" />
 						<span>{getCardTopic("computer_science")}</span>
 					</div>
-				</div>
-				<div className="cardContainerMain">
-					<div className="subCard up">
-						<img src={getCardBG("personal_development")} alt="ig" />
-						<span>{getCardTopic("personal_development")}</span>
-					</div>
-					<div className="subCard down">
-						<img
-							src={getCardBG("information_technology")}
-							alt="ig"
-						/>
-						<span>{getCardTopic("information_technology")}</span>
-					</div>
-				</div>
-				<div className="cardContainerMain">
-					<div className="subCard up">
-						<img src={getCardBG("health")} alt="ig" />
-						<span>{getCardTopic("health")}</span>
-					</div>
-					<div className="subCard down">
-						<img src={getCardBG("language_learning")} alt="ig" />
-						<span>{getCardTopic("language_learning")}</span>
-					</div>
-				</div>
-				<div className="cardContainerMain">
-					<div className="subCard up">
-						<img src={getCardBG("math_and_logic")} alt="ig" />
-						<span>{getCardTopic("math_and_logic")}</span>
-					</div>
-					<div className="subCard down">
-						<img src={getCardBG("social_science")} alt="ig" />
-						<span>{getCardTopic("social_science")}</span>
-					</div>
-				</div>
-				<div className="cardContainerMain">
-					<div className="subCard up">
-						<img src={getCardBG("physics")} alt="ig" />
-						<span>{getCardTopic("physics")}</span>
-					</div>
-					<div className="subCard down">
-						<img src={getCardBG("art")} alt="ig" />
-						<span>{getCardTopic("art")}</span>
-					</div>
-				</div>
+				</div> */}
 			</Slider>
 		</div>
 	);

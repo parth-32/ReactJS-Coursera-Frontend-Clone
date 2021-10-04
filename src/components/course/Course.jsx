@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import cls from "./course.module.css";
-import { useLocation } from "react-router-dom";
+import { useLocation,useParams } from "react-router-dom";
 import {
 	Link,
 	Breadcrumbs,
@@ -14,6 +14,9 @@ import {
 	NavigateNext,
 } from "@mui/icons-material";
 import CourseItem from "./CourseItem";
+
+import { api_getCourseByCategory } from "../../helper/api_call.helper";
+import Spinner from "../loader/Loader";
 
 const DUMMY_DATA = [
 	{
@@ -39,68 +42,6 @@ const DUMMY_DATA = [
 	},
 ];
 
-const DUMMY_COURSES = [
-	{
-		id: "1",
-		logo: "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/df/9bd6cc81554fa385758881f11c8c75/9.png",
-		title: "Getting Started with Power BI Desktop",
-		offer_by: "Uka Tarsadiya University",
-		type: "Course",
-		rating: 4.7,
-		rated_by: 3210,
-		enroll_count: 65444,
-		level: "Intermediate",
-	},
-	{
-		id: "2",
-		logo: "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/df/9bd6cc81554fa385758881f11c8c75/9.png",
-		title: "Getting Started with Power BI Desktop",
-		offer_by: "La Net Team",
-		type: "Course",
-		rating: 4.7,
-		rated_by: 3210,
-		enroll_count: 65444,
-		level: "Intermediate",
-	},
-	{
-		id: "3",
-		logo: "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/df/9bd6cc81554fa385758881f11c8c75/9.png",
-		title: "Getting Started with Power BI Desktop",
-		offer_by: "Google",
-		type: "Course",
-		rating: 4.7,
-		rated_by: 3210,
-		enroll_count: 65444,
-		level: "Advanced",
-	},
-	{
-		id: "4",
-		logo: "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/df/9bd6cc81554fa385758881f11c8c75/9.png",
-		title: "Getting Started with Power BI Desktop",
-		offer_by: "Microsoft",
-		type: "Course",
-		rating: 4.7,
-		rated_by: 3210,
-		enroll_count: 65444,
-		level: "Advanced",
-	},
-	{
-		id: "5",
-		logo: "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/df/9bd6cc81554fa385758881f11c8c75/9.png",
-		title: "Getting Started with Power BI Desktop",
-		offer_by: "IBM",
-		type: "Course",
-		rating: 4.7,
-		rated_by: 3210,
-		enroll_count: 65444,
-		level: "Mixed",
-	},
-];
-
-const courseName = (name) => {
-	return name.split("-").join(" ");
-};
-
 var displayCheckbox = {};
 
 const Course = () => {
@@ -112,7 +53,10 @@ const Course = () => {
 	const [isLevelChecked, setIsLevelChecked] = useState({});
 	const [isLanguageChecked, setIsLanguageChecked] = useState({});
 
-	// const levelRef = useRef();
+	const params = useParams()
+	
+	const [courseData, setCourseData] = useState([])
+	const [isLoading, setIsLoading] = useState(true)
 
 	const onClickCheckBoxHandler = (e, type) => {
 		e.preventDefault();
@@ -142,13 +86,14 @@ const Course = () => {
 
 	const { search } = useLocation();
 	const query = search.split("=").pop();
+	console.log("QUERY : ",query)
 
 	const breadcrumbs = [
 		<Link underline="hover" key="1" color="inherit" href="/">
 			Browse
 		</Link>,
 		<Typography className={cls.typography} key="2" color="inherit">
-			{courseName(query)}
+			{!isLoading && courseData.category.name}
 		</Typography>,
 	];
 
@@ -172,11 +117,22 @@ const Course = () => {
 		});
 	}, []);
 
-	useEffect(() => {}, [levelChangeHandler, languageChangeHandler]);
+	useEffect(() => {
+		async function fetchCourse(categoryId) {
+			return await api_getCourseByCategory(categoryId)
+		}
 
+		fetchCourse(params.course).then(res => {
+			setCourseData(res.data.data)
+			setIsLoading(false)
+		})
+	}, [levelChangeHandler, languageChangeHandler, params]);
+	
 	return (
 		<div className={cls.container}>
 			{/* Breadcrumbs Section */}
+			<Spinner/>
+			{isLoading && <Spinner/>}
 			<div className={cls.breadcrumbsContainer}>
 				<Stack spacing={2}>
 					<Breadcrumbs
@@ -190,14 +146,14 @@ const Course = () => {
 					</Breadcrumbs>
 				</Stack>
 				<div className={cls.courseHeading}>
-					{courseName(query)} Courses
+					{!isLoading && courseData.category.name} Courses
 				</div>
 			</div>
 
 			{/* Filter Section */}
 			<div className={cls.filterContainer}>
 				<h2 className={cls.totalCount}>
-					<span>Showing 355 total results for "{query}"</span>
+					<span>Showing {!isLoading && courseData.course.length} total results for "{!isLoading && courseData.category.name}"</span>
 				</h2>
 				<p>Filter by</p>
 				<div className={cls.filterSection}>
@@ -325,7 +281,7 @@ const Course = () => {
 
 			{/* CourseList Section */}
 			<div className={cls.courseListContainer}>
-				{DUMMY_COURSES.map((course) => {
+				{!isLoading && courseData.course.map((course) => {
 					return <CourseItem data={course} />;
 				})}
 			</div>

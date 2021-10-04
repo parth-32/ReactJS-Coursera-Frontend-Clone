@@ -19,7 +19,7 @@ function App() {
 				<Switch>
 					<div className="App">
 						<Header />
-						<Route path="/course" exact>
+						<Route path="/course/:course">
 							<CoursePage />
 						</Route>
 						<Route path="/browse" exact>
@@ -30,14 +30,15 @@ function App() {
 							{isAuthenticated && <Redirect to="/" />}
 						</Route>
 						<Route path="/signup" exact>
-							<SignUp />
+							{!isAuthenticated && <SignUp />}
+							{isAuthenticated && <Redirect to="/" />}
 						</Route>
-						<Route path="/learn/:course" exact>
+						<Route path="/learn/:course">
 							<LearnPage />
 						</Route>
-						{/* <Route path="*">
+						<Route path="*">
 							<Redirect to="/" />
-						</Route> */}
+						</Route>
 					</div>
 				</Switch>
 			</BrowserRouter>

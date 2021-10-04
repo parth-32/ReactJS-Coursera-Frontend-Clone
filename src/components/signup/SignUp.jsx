@@ -4,6 +4,8 @@ import { Link, useHistory } from "react-router-dom";
 import { Close } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { authAction } from "../../store/auth_slice";
+// import { apiAction } from "../../store/api_slice";
+import { api_register } from "../../helper/api_call.helper";
 import "../login/login.scss";
 import {
 	validateString,
@@ -18,6 +20,7 @@ var ALERT_TOAST = {};
 const SignUp = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
+
 	//model
 	const [open, setOpen] = useState(true);
 
@@ -34,7 +37,7 @@ const SignUp = () => {
 		history.replace("/");
 	};
 
-	const formSubmitHandler = (e) => {
+	const formSubmitHandler = async (e) => {
 		e.preventDefault();
 		const email = emailRef.current.value;
 		const name = nameRef.current.value;
@@ -62,22 +65,29 @@ const SignUp = () => {
 			};
 		} else {
 			const sanitizedName = sanitizeString(name);
-			console.log(sanitizedName);
 
-			dispatch(
-				authAction.signup({ token: "testing_token" + Math.random() })
-			);
+			try {
+				const response = await api_register({
+					name: sanitizedName,
+					email,
+					password,
+				});
 
-			ALERT_TOAST = {
-				message: "Successfully Register",
-				type: "success",
-			};
+				dispatch(authAction.signup({ token: response.data.token }));
 
-			emailRef.current.value = "";
-			nameRef.current.value = "";
-			passwordRef.current.value = "";
+				emailRef.current.value = "";
+				nameRef.current.value = "";
+				passwordRef.current.value = "";
 
-			history.replace("/browse");
+				history.replace("/browse");
+			} catch (e) {
+				console.log("ERROR=======", e.response.data.message);
+				dispatch(authAction.logout());
+				ALERT_TOAST = {
+					message: e.response.data.message,
+					type: "error",
+				};
+			}
 		}
 	};
 

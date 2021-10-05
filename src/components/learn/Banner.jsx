@@ -1,41 +1,54 @@
 import React from "react";
 import { Star } from "@mui/icons-material";
 import "./banner.scss";
+import { useHistory } from "react-router-dom";
 
-const Banner = () => {
+const Banner = (props) => {
+	const { data } = props;
+
+	const history = useHistory();
+	const enrollCourseHandler = (e) => {
+		e.preventDefault();
+
+		// history.push(`/lecture/${data._id}`);
+		history.push(`/lecture/${data._id}/week/${data.weeks[0]._id}`);
+	};
 	return (
 		<div className="banner">
 			<div className="bannerBody">
-				<span className="bannerTitle">Financial Markets</span>
+				<span className="bannerTitle">{data.title}</span>
 				<div className="ratingInfo">
-					<span className="ratingTotal">4.8</span>
+					<span className="ratingTotal">{data.rating}</span>
 					<Star className="ratingStar" />
 					<Star className="ratingStar" />
 					<Star className="ratingStar" />
 					<Star className="ratingStar" />
 					<Star className="ratingStar" />
-					<span className="ratedBy">1,321 ratings</span>
+					<span className="ratedBy">
+						{data.rated_by.length} ratings
+					</span>
 				</div>
 				<p className="enrolledBy">
-					<b>1,045,182</b> already enrolled
+					<b>{data.enroll_count}</b> already enrolled
 				</p>
 				<p className="instructor">
-					<b>Instructor(s):</b> Robert Shiller
+					<b>Instructor(s):</b> {data.instructor}
 				</p>
 				<p className="subTitles">
-					<b>Subtitles:</b> English, Arabic, French, Portuguese
-					(European), Italian, Portuguese (Brazilian), Vietnamese,
-					Korean, German, Russian, Spanish, Japanese
+					<b>Subtitles:</b> {data.languages.join(", ")}
 				</p>
 				<div className="bannerBtn">
-					<button className="enrollForFreeBtn">
+					<button
+						className="enrollForFreeBtn"
+						onClick={enrollCourseHandler}
+					>
 						Enroll for Free
 					</button>
 				</div>
 			</div>
 			<div className="bannerOfferBy">
 				<span className="offerByText">Offered by</span>
-				<span className="bannerUniversity">Google</span>
+				<span className="bannerUniversity">{data.offer_by}</span>
 			</div>
 		</div>
 	);

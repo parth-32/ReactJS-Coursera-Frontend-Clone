@@ -1,0 +1,58 @@
+.lectureBody {
+	overflow: auto;
+	display: flex;
+	text-align: left;
+	margin-left: 22%;
+
+	flex-direction: column;
+	width: 100%;
+	padding: 10px 50px;
+	font-family: "Open Sans";
+	color: var(--font-main-color);
+
+	.courseTitle {
+		font-size: 22px;
+		font-weight: 500;
+		text-align: right;
+	}
+
+	.offer_by {
+		font-size: 14px;
+		color: #848484;
+		font-weight: 400;
+		text-align: right;
+	}
+
+	.weekWrapper {
+		display: flex;
+		flex-direction: column;
+		padding: 0px 20px;
+
+		.weekNumber {
+			font-size: 26px;
+			padding: 5px 0px;
+			font-weight: 600;
+			color: #404040;
+			display: flex;
+			align-items: center;
+
+			.weekCompleted {
+				// color: green;
+				color: #00c500;
+				padding-right: 20px;
+				font-size: 32px;
+			}
+		}
+
+		.weekTitle {
+			font-size: 16px;
+		}
+
+		.player {
+			margin-top: 20px;
+			height: auto;
+			width: 70%;
+			background: blue;
+		}
+	}
+}

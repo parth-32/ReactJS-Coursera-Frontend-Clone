@@ -27,12 +27,21 @@ export const api_getCategory = async () => {
 };
 
 export const api_getCourseByCategory = async (categoryId) => {
-	const result = await axios.get("http://localhost:3210/course/" + categoryId,
+	const result = await axios.get(
+		"http://localhost:3210/course/" + categoryId
 		// {
 		// 	headers: {
 		// 		Authorization: `Bearer ${localStorage.getItem("token")}`,
 		// 	},
 		// }
+	);
+
+	return result;
+};
+
+export const api_getCourseById = async (courseId) => {
+	const result = await axios.get(
+		"http://localhost:3210/course/id/" + courseId
 	);
 
 	return result;

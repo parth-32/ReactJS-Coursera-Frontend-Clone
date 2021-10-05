@@ -1,14 +1,21 @@
 import React from 'react'
-// import Loader from "react-loader-spinner";
-// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { Loader } from 'rsuite';
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+// import { Loader } from 'rsuite';
 import "./loader.scss"
+import Modal from "@mui/material/Modal";
 
-const Spinner = () => {
-    const body = document.getElementById("root").style.position = "fixed"
-    console.log(body)
+const Spinner = (props) => {
+
     return (
-        <section className="loader_spinner">
+        <Modal
+			open={props.open}
+			
+			aria-labelledby="modal-modal-title"
+			aria-describedby="modal-modal-description"
+			style={{ background: "rgba(0,0,0,0.5)" }}
+		>
+			<span className="loader_spinner">
             <Loader
                 type="Puff"
                 color="#00BFFF"
@@ -16,8 +23,9 @@ const Spinner = () => {
                 width={100}
                 // timeout={3000000} //3 secs
             />
-            
-        </section>
+            </span>
+		</Modal>
+        
         
     )
 }

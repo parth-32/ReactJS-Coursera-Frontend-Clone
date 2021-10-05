@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import cls from "./course.module.css";
-import { useLocation,useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import {
 	Link,
 	Breadcrumbs,
@@ -53,10 +53,10 @@ const Course = () => {
 	const [isLevelChecked, setIsLevelChecked] = useState({});
 	const [isLanguageChecked, setIsLanguageChecked] = useState({});
 
-	const params = useParams()
-	
-	const [courseData, setCourseData] = useState([])
-	const [isLoading, setIsLoading] = useState(true)
+	const params = useParams();
+
+	const [courseData, setCourseData] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const onClickCheckBoxHandler = (e, type) => {
 		e.preventDefault();
@@ -86,7 +86,7 @@ const Course = () => {
 
 	const { search } = useLocation();
 	const query = search.split("=").pop();
-	console.log("QUERY : ",query)
+	console.log("QUERY : ", query);
 
 	const breadcrumbs = [
 		<Link underline="hover" key="1" color="inherit" href="/">
@@ -119,20 +119,19 @@ const Course = () => {
 
 	useEffect(() => {
 		async function fetchCourse(categoryId) {
-			return await api_getCourseByCategory(categoryId)
+			return await api_getCourseByCategory(categoryId);
 		}
 
-		fetchCourse(params.course).then(res => {
-			setCourseData(res.data.data)
-			setIsLoading(false)
-		})
+		fetchCourse(params.course).then((res) => {
+			setCourseData(res.data.data);
+			setIsLoading(false);
+		});
 	}, [levelChangeHandler, languageChangeHandler, params]);
-	
+
 	return (
 		<div className={cls.container}>
+			<Spinner open={isLoading} />
 			{/* Breadcrumbs Section */}
-			<Spinner/>
-			{isLoading && <Spinner/>}
 			<div className={cls.breadcrumbsContainer}>
 				<Stack spacing={2}>
 					<Breadcrumbs
@@ -153,7 +152,10 @@ const Course = () => {
 			{/* Filter Section */}
 			<div className={cls.filterContainer}>
 				<h2 className={cls.totalCount}>
-					<span>Showing {!isLoading && courseData.course.length} total results for "{!isLoading && courseData.category.name}"</span>
+					<span>
+						Showing {!isLoading && courseData.course.length} total
+						results for "{!isLoading && courseData.category.name}"
+					</span>
 				</h2>
 				<p>Filter by</p>
 				<div className={cls.filterSection}>
@@ -281,9 +283,10 @@ const Course = () => {
 
 			{/* CourseList Section */}
 			<div className={cls.courseListContainer}>
-				{!isLoading && courseData.course.map((course) => {
-					return <CourseItem data={course} />;
-				})}
+				{!isLoading &&
+					courseData.course.map((course) => {
+						return <CourseItem data={course} />;
+					})}
 			</div>
 
 			{/* Pagination */}

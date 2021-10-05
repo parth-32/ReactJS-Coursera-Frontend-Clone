@@ -1,0 +1,53 @@
+.lectureWrapper {
+	background: white;
+	margin-top: 71px;
+	display: flex;
+	flex-direction: row;
+	// padding: 0px 50px;
+
+	.sidebar {
+		overflow: auto;
+		overflow-y: scroll;
+		height: 100%;
+		width: 20%;
+		position: fixed;
+		z-index: 1;
+		top: 71px;
+		left: 0;
+		background-color: white;
+		padding-left: 20px;
+
+		ul {
+			padding: 0px 5px !important;
+			/* margin: 0; */
+			text-align: left !important;
+		}
+
+		.menu {
+			float: left;
+			list-style: none;
+			width: -webkit-fill-available;
+
+			li {
+				padding: 10px 20px;
+				transition: all 0.2s ease-in;
+
+				&:hover {
+					background: rgb(231, 231, 231);
+				}
+			}
+
+			a {
+				color: var(--font-main-color);
+
+				text-decoration: none;
+				font-size: 16px;
+
+				&:active,
+				&.activeLink {
+					font-weight: 700;
+				}
+			}
+		}
+	}
+}

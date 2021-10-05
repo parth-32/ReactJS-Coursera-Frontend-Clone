@@ -5,6 +5,7 @@ import Header from "./components//header/Header";
 import CoursePage from "./pages/CoursePage";
 import BrowsePage from "./pages/BrowsePage";
 import LearnPage from "./pages/LearnPage";
+import LecturePage from "./pages/LecturePage";
 import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
 import "./App.css";
@@ -33,12 +34,20 @@ function App() {
 							{!isAuthenticated && <SignUp />}
 							{isAuthenticated && <Redirect to="/" />}
 						</Route>
-						<Route path="/learn/:course">
+						<Route path="/learn/:course" exact>
 							<LearnPage />
 						</Route>
-						<Route path="*">
-							<Redirect to="/" />
+						<Route path="/lecture/:courseId" exact>
+							{!isAuthenticated && <Login />}
+							{isAuthenticated && <LecturePage />}
 						</Route>
+						<Route path="/lecture/:courseId/week/:weekId" exact>
+							{!isAuthenticated && <Login />}
+							{isAuthenticated && <LecturePage />}
+						</Route>
+						{/* <Route path="*">
+							<Redirect to="/" />
+						</Route> */}
 					</div>
 				</Switch>
 			</BrowserRouter>

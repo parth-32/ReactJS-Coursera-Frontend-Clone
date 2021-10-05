@@ -58,6 +58,7 @@
 			margin: 0;
 			padding: 5px 0px;
 			max-width: 600px;
+			text-transform: capitalize;
 		}
 
 		.bannerBtn {
@@ -80,6 +81,10 @@
 
 				&:hover {
 					background: rgb(50, 50, 206);
+				}
+
+				&:active {
+					transform: scale(0.9);
 				}
 			}
 		}

@@ -88,16 +88,16 @@ const Header = () => {
 						<div className="dropdown_content">
 							<ul>
 								<li>
-									<a href="/my-course">My Courses</a>
+									<Link to="/my_course">My Courses</Link>
 								</li>
 								<li>
-									<a href="/my-course">Profile</a>
+									<Link to="/my_course">Profile</Link>
 								</li>
 								<li>
-									<a href="/my-course">Settings</a>
+									<Link to="/my_course">Settings</Link>
 								</li>
 								<li>
-									<a href="/my-course">Accomplishment</a>
+									<Link to="/my_course">Accomplishment</Link>
 								</li>
 								<li>
 									<Link to="/" onClick={logoutHandler}>

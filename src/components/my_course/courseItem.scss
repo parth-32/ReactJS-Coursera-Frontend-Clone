@@ -1,0 +1,64 @@
+.myCourseBodyWrapper {
+	display: flex;
+	flex-direction: column;
+	background: var(--bg-main);
+
+	.myCourseBody {
+		background: white;
+		display: flex;
+		flex-direction: row;
+		margin: 10px 200px;
+		padding: 20px;
+		box-shadow: 3px 3px 10px #c1c1c1;
+
+		&:first-child {
+			margin-top: 20px;
+		}
+
+		.coverImg {
+			height: 132px;
+			width: 132px;
+		}
+
+		.bodyInfo {
+			padding: 0px 32px;
+			display: flex;
+			flex-direction: column;
+			font-family: "Open Sans";
+			flex: 1;
+			text-align: left;
+
+			.offer_by {
+				color: gray;
+				font-size: 14px;
+			}
+
+			.courseTitle {
+				text-decoration: none;
+				padding: 20px 0px;
+				color: var(--main-color);
+				font-size: 28px;
+				font-weight: 600;
+			}
+		}
+
+		.gotoButton {
+			width: 200px;
+			display: flex;
+			align-items: center;
+
+			.goToCourse {
+				text-decoration: none;
+				background: var(--main-color);
+				color: white;
+				padding: 15px 25px;
+				font-family: "Open Sans";
+				transition: all 0.2s ease-in;
+
+				&:hover {
+					background: rgb(47, 47, 202);
+				}
+			}
+		}
+	}
+}

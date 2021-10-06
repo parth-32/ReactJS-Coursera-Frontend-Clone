@@ -75,3 +75,13 @@ export const api_updatedCourseWeekStatus = async (dataObj) => {
 
 	return result;
 };
+
+export const api_getUserEnrolledCourse = async () => {
+	const result = await axios.get("http://localhost:3210/enroll/course/me", {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem("token")}`,
+		},
+	});
+
+	return result;
+};

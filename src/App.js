@@ -2,10 +2,13 @@ import React from "react";
 import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Header from "./components//header/Header";
+
 import CoursePage from "./pages/CoursePage";
 import BrowsePage from "./pages/BrowsePage";
 import LearnPage from "./pages/LearnPage";
 import LecturePage from "./pages/LecturePage";
+import MyCoursePage from "./pages/MyCoursePage";
+
 import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
 import "./App.css";
@@ -45,6 +48,25 @@ function App() {
 							{!isAuthenticated && <Login />}
 							{isAuthenticated && <LecturePage />}
 						</Route>
+						<Route path="/my_course" exact>
+							{!isAuthenticated && <Login />}
+							{isAuthenticated && (
+								<MyCoursePage type="enrolled" />
+							)}
+						</Route>
+						<Route path="/in_progress" exact>
+							{!isAuthenticated && <Login />}
+							{isAuthenticated && (
+								<MyCoursePage type="in_progress" />
+							)}
+						</Route>
+						<Route path="/completed" exact>
+							{!isAuthenticated && <Login />}
+							{isAuthenticated && (
+								<MyCoursePage type="completed" />
+							)}
+						</Route>
+
 						{/* <Route path="*">
 							<Redirect to="/" />
 						</Route> */}

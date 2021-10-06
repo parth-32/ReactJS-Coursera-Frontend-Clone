@@ -1,0 +1,44 @@
+.myCourseWrapper {
+	margin-top: 71px;
+	background: white;
+	display: flex;
+	flex-direction: column;
+
+	.myCourseGreeting {
+		display: flex;
+		background: #cce7ff;
+		align-items: flex-end;
+		padding: 0px 100px;
+		height: 150px;
+		font-size: 34px;
+		font-weight: 700;
+		font-family: "Open Sans";
+		color: #1f1bc5;
+		padding-bottom: 10px;
+	}
+
+	.myCourseStatus {
+		display: flex;
+		flex-direction: row;
+		padding: 0px 200px;
+
+		.statusLink {
+			text-decoration: none;
+			color: var(--font-main-color);
+			font-family: "Open Sans";
+			font-weight: 600;
+			width: 150px;
+			margin: 0px 30px;
+			padding: 5px 0px;
+			transition: all 0.2s ease-in;
+			border: 5px solid transparent;
+
+			&:hover,
+			&:active,
+			&.statusActive {
+				border-bottom: 5px solid blue;
+			}
+		}
+	}
+
+}

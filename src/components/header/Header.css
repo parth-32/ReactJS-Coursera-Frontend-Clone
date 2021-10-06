@@ -176,6 +176,7 @@ input:focus {
 	font-size: 12px;
 	margin-left: 5px;
 	font-weight: 400;
+	text-transform: capitalize;
 }
 
 .dropdown {

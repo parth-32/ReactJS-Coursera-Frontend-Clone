@@ -55,13 +55,18 @@ const Login = () => {
 					email,
 					password,
 				});
+				console.log(response);
+				dispatch(
+					authAction.login({
+						token: response.data.token,
+						user: {
+							name: response.data.data.name,
+							email: response.data.data.email,
+						},
+					})
+				);
 
-				dispatch(authAction.login({ token: response.data.token }));
-
-				// emailRef.current.value = "";
-				// passwordRef.current.value = "";
-
-				history.replace("/browse");
+				// history.replace("/browse");
 			} catch (e) {
 				console.log("ERROR=======", e?.response?.data?.message || e);
 				ALERT_TOAST = {

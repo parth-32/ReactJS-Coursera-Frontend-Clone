@@ -73,7 +73,15 @@ const SignUp = () => {
 					password,
 				});
 
-				dispatch(authAction.signup({ token: response.data.token }));
+				dispatch(
+					authAction.signup({
+						token: response.data.token,
+						user: {
+							name: response.data.data.name,
+							email: response.data.data.email,
+						},
+					})
+				);
 
 				emailRef.current.value = "";
 				nameRef.current.value = "";

@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { authAction } from "../../store/auth_slice";
 
 const Header = () => {
-	const { isAuthenticated } = useSelector((state) => state.auth);
+	const { isAuthenticated, userData } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const [isHover, setIsHover] = useState(false);
@@ -82,7 +82,7 @@ const Header = () => {
 									alt="logo"
 								/>
 							</div>
-							<span className="username">Username</span>
+							<span className="username">{userData.name}</span>
 							<KeyboardArrowDown className="dropdown" />
 						</div>
 						<div className="dropdown_content">

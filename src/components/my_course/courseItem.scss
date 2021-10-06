@@ -3,6 +3,16 @@
 	flex-direction: column;
 	background: var(--bg-main);
 
+	.emptySection {
+		font-size: 20px;
+		font-family: "Open Sans";
+		text-transform: capitalize;
+		padding: 50px;
+		width: -webkit-fill-available;
+		color: var(--font-main-color);
+		font-weight: 100;
+	}
+
 	.myCourseBody {
 		background: white;
 		display: flex;

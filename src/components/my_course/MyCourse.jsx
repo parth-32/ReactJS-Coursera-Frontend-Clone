@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { api_getUserEnrolledCourse } from "../../helper/api_call.helper";
-// import Spinner from "../loader/Loader";
+
 import CourseItem from "./CourseItem";
 import "./myCourse.scss";
 
@@ -33,6 +33,7 @@ const MyCourse = (props) => {
 			setIsLoading(false);
 		});
 	}, [props.type]);
+
 	return (
 		<section className="myCourseWrapper">
 			<div className="myCourseGreeting">Welcome Back!</div>
@@ -60,11 +61,19 @@ const MyCourse = (props) => {
 				</NavLink>
 			</div>
 			<div className="myCourseBodyWrapper">
-				{/* {isLoading && <Spinner open={isLoading} />} */}
-				{!isLoading &&
+				{!isLoading && courseData.length === 0 ? (
+					<CourseItem title={props.type} data={[]} isEmpty={true} />
+				) : (
 					courseData.map((data) => {
-						return <CourseItem title={props.type} data={data} />;
-					})}
+						return (
+							<CourseItem
+								title={props.type}
+								data={data}
+								isEmpty={false}
+							/>
+						);
+					})
+				)}
 			</div>
 		</section>
 	);

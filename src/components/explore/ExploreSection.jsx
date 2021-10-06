@@ -17,9 +17,6 @@ const ExploreSection = (props) => {
 	const location = useLocation();
 	const history = useHistory();
 
-	if (location.pathname === "/") {
-		locationMargin = { marginTop: "71px" };
-	}
 	const [isHover, setIsHover] = useState(false);
 	const [hoverId, setHoverId] = useState(null);
 

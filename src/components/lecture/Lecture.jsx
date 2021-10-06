@@ -2,25 +2,42 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import LectureWeek from "./LectureWeek";
 import "./lecture.scss";
-import { api_getCourseById } from "../../helper/api_call.helper";
+import {
+	api_getCourseById,
+	api_getEnrolledCourseStatus,
+	api_updatedCourseWeekStatus,
+} from "../../helper/api_call.helper";
 import Spinner from "../loader/Loader";
 
 const Lecture = () => {
 	const params = useParams();
 
 	const [weekData, setWeekData] = useState({});
+	const [weekStatus, setWeekStatus] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		async function fetchData(courseId) {
-			return api_getCourseById(courseId);
-		}
-
-		fetchData(params.courseId).then((res) => {
+		//Get Course Info
+		api_getCourseById(params.courseId).then((res) => {
 			setWeekData(res.data.data);
+		});
+
+		//Get Course Finished Status
+		api_getEnrolledCourseStatus(params.courseId).then((res) => {
+			setWeekStatus(res.data.data.week_status);
 			setIsLoading(false);
 		});
 	}, [params]);
+
+	
+
+	const onWeekFinishHandler = (weekId) => {
+		api_updatedCourseWeekStatus({ courseId: params.courseId, weekId }).then(
+			(res) => {
+				setWeekStatus(res.data.data.week_status);
+			}
+		);
+	};
 
 	return (
 		<React.Fragment>
@@ -48,6 +65,8 @@ const Lecture = () => {
 						weeks={weekData.weeks}
 						offer_by={weekData.offer_by}
 						title={weekData.title}
+						status={weekStatus}
+						onWeekFinish={onWeekFinishHandler}
 					/>
 				</section>
 			)}

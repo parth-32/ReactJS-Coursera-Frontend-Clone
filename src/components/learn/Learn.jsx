@@ -5,8 +5,13 @@ import {
 	SubtitlesOutlined,
 } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { api_getCourseById } from "../../helper/api_call.helper";
+import { useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router";
+import {
+	api_enrollCourse,
+	api_getCourseById,
+	api_getEnrolledCourseStatus,
+} from "../../helper/api_call.helper";
 import Spinner from "../loader/Loader";
 import Banner from "./Banner";
 import "./learn.scss";
@@ -14,25 +19,50 @@ import "./learn.scss";
 const Learn = () => {
 	const params = useParams();
 
+	const auth = useSelector((state) => state.auth);
+	const history = useHistory();
+
 	const [courseData, setCourseData] = useState([]);
+	const [isEnrolled, setIsEnrolled] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		async function fetchCourse(courseId) {
-			return await api_getCourseById(courseId);
-		}
-
-		fetchCourse(params.course).then((res) => {
+		//Get Course
+		api_getCourseById(params.course).then((res) => {
 			setCourseData(res.data.data);
+		});
+
+		//Get Enrolled Status
+		api_getEnrolledCourseStatus(params.course).then((res) => {
+			if (res.data.data) {
+				setIsEnrolled(true);
+			}
 			setIsLoading(false);
 		});
 	}, [params]);
+
+	const enrollCourseHandler = (weekId) => {
+		if (auth.isAuthenticated && !!auth.token) {
+			// passing courseId
+			api_enrollCourse(params.course)
+				.then((res) => {
+					history.push(`/lecture/${params.course}/week/${weekId}`);
+				})
+				.catch((e) => console.log("ENROLL_COURSE_ERROR ==== ", e));
+		} else {
+			history.push("/login");
+		}
+	};
 	return (
 		<>
 			<Spinner open={isLoading} />
 			{!isLoading && (
 				<section className="learnWrapper">
-					<Banner data={courseData} />
+					<Banner
+						data={courseData}
+						enrollStatus={isEnrolled}
+						onEnrolling={enrollCourseHandler}
+					/>
 					<div className="courseDetails">
 						<div className="leftPart">
 							<h3 className="aboutCourseTitle">

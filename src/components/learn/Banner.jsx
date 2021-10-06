@@ -1,17 +1,17 @@
 import React from "react";
 import { Star } from "@mui/icons-material";
 import "./banner.scss";
-import { useHistory } from "react-router-dom";
+
 
 const Banner = (props) => {
 	const { data } = props;
 
-	const history = useHistory();
+	
+
+	//Enrolling Course
 	const enrollCourseHandler = (e) => {
 		e.preventDefault();
-
-		// history.push(`/lecture/${data._id}`);
-		history.push(`/lecture/${data._id}/week/${data.weeks[0]._id}`);
+		props.onEnrolling(data.weeks[0]._id);
 	};
 	return (
 		<div className="banner">
@@ -42,7 +42,8 @@ const Banner = (props) => {
 						className="enrollForFreeBtn"
 						onClick={enrollCourseHandler}
 					>
-						Enroll for Free
+						{props.enrollStatus && "Continue Course"}
+						{!props.enrollStatus && "Enroll for Free"}
 					</button>
 				</div>
 			</div>

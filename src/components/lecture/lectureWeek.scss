@@ -9,6 +9,8 @@
 	padding: 10px 50px;
 	font-family: "Open Sans";
 	color: var(--font-main-color);
+	min-height: 100vh;
+	height: -webkit-fill-available;
 
 	.courseTitle {
 		font-size: 22px;
@@ -50,8 +52,8 @@
 
 		.player {
 			margin-top: 20px;
-			height: auto;
-			width: 70%;
+			width: 100%;
+			height: calc(100vw * 9 / 24);
 			background: blue;
 		}
 	}

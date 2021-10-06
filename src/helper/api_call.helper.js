@@ -29,11 +29,6 @@ export const api_getCategory = async () => {
 export const api_getCourseByCategory = async (categoryId) => {
 	const result = await axios.get(
 		"http://localhost:3210/course/" + categoryId
-		// {
-		// 	headers: {
-		// 		Authorization: `Bearer ${localStorage.getItem("token")}`,
-		// 	},
-		// }
 	);
 
 	return result;
@@ -43,6 +38,40 @@ export const api_getCourseById = async (courseId) => {
 	const result = await axios.get(
 		"http://localhost:3210/course/id/" + courseId
 	);
+
+	return result;
+};
+
+export const api_enrollCourse = async (courseId) => {
+	const result = await axios.post(
+		"http://localhost:3210/enroll/",
+		{ course: courseId },
+		{
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("token")}`,
+			},
+		}
+	);
+
+	return result;
+};
+
+export const api_getEnrolledCourseStatus = async (courseId) => {
+	const result = await axios.get("http://localhost:3210/enroll/" + courseId, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem("token")}`,
+		},
+	});
+
+	return result;
+};
+
+export const api_updatedCourseWeekStatus = async (dataObj) => {
+	const result = await axios.patch("http://localhost:3210/enroll/", dataObj, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem("token")}`,
+		},
+	});
 
 	return result;
 };

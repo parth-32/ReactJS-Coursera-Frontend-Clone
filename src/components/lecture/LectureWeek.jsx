@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./lectureWeek.scss";
 import ReactPlayer from "react-player";
 import { useParams } from "react-router-dom";
@@ -24,13 +24,25 @@ const LectureWeek = (props) => {
 
 	const { weeks } = props;
 
+	useEffect(() => {
+		//filter current week status
+		const finish_status = props.status.filter(
+			(week) => week._id === params.weekId
+		)[0].finished;
+		setIsFinished(finish_status);
+	}, [params, props.status]);
+
+	//Filter to get Week number
 	const weekNumber = weeks.findIndex((week) => week._id === params.weekId);
+
+	//Filter to get current week data
 	const week = weeks.filter((week) => week._id === params.weekId)[0];
 
 	const videoProgressEvent = (progress) => {
 		console.log("PROGRESS ====", progress);
 		if (progress.played >= 0.98) {
 			console.log("FINISHED");
+			props.onWeekFinish(params.weekId);
 			setIsFinished(true);
 		}
 	};
@@ -62,6 +74,8 @@ const LectureWeek = (props) => {
 								controls={true}
 								onProgress={videoProgressEvent}
 								onDuration={videoDurationEvent}
+								width="100%"
+								height="100%"
 							/>
 						</div>
 					</div>

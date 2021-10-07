@@ -64,6 +64,7 @@ const Course = () => {
 
 	const [courseData, setCourseData] = useState([]);
 	const [paginationCount, setPaginationCount] = useState(0);
+
 	const [isLoading, setIsLoading] = useState(true);
 
 	const onClickCheckBoxHandler = (e, type) => {
@@ -111,28 +112,61 @@ const Course = () => {
 		});
 	}, []);
 
+	const getLevel = (arr) => {
+		return arr.length > 0 ? `&level=` + arr.join(",") : "";
+	};
+	const getLanguage = (arr) => {
+		return arr.length > 0 ? `&language=` + arr.join(",") : "";
+	};
+
 	useEffect(() => {
+		// Applying Level and Language filter
+		var levelKeys = Object.keys(isLevelChecked);
+		var filteredLevel = levelKeys.filter((key) => isLevelChecked[key]);
+
+		var languageKeys = Object.keys(isLanguageChecked);
+		var filteredLanguage = languageKeys.filter(
+			(key) => isLanguageChecked[key]
+		);
+
 		//passing category id
 		categoryQuery &&
-			api_getCourseByCategory(categoryQuery).then((res) => {
+			api_getCourseByCategory(
+				`${categoryQuery}${getLevel(filteredLevel)}${getLanguage(
+					filteredLanguage
+				)}`
+			).then((res) => {
 				setPaginationCount(
 					Math.ceil(res.data.data.course.length / PAGE_SIZE)
 				);
 			});
 		categoryQuery &&
-			api_getCourseByCategory(categoryQuery, "?page=1").then((res) => {
+			api_getCourseByCategory(
+				categoryQuery,
+				`?page=1${getLevel(filteredLevel)}${getLanguage(
+					filteredLanguage
+				)}`
+			).then((res) => {
 				setCourseData(res.data.data);
 				setIsLoading(false);
 			});
 
 		//search value
 		searchQuery &&
-			api_getQueryCourse(`?search=${searchQuery}`).then((res) => {
+			api_getQueryCourse(
+				`?search=${searchQuery}${getLevel(filteredLevel)}${getLanguage(
+					filteredLanguage
+				)}`
+			).then((res) => {
 				setPaginationCount(Math.ceil(res.data.data.length / PAGE_SIZE));
 			});
 
 		searchQuery &&
-			api_getQueryCourse(`?search=${searchQuery}&page=1`).then((res) => {
+			api_getQueryCourse(
+				`?search=${searchQuery}&page=1${getLevel(
+					filteredLevel
+				)}${getLanguage(filteredLanguage)}`
+			).then((res) => {
 				setCourseData(res.data.data);
 				setIsLoading(false);
 			});
@@ -144,28 +178,45 @@ const Course = () => {
 		categoryQuery,
 		searchQuery,
 		history,
+		isLevelChecked,
+		isLanguageChecked,
 	]);
 
 	const paginationHandler = (e, page) => {
 		console.log("Page Number === ", page);
+		// Applying Level and Language filter
+		var levelKeys = Object.keys(isLevelChecked);
+		var filteredLevel = levelKeys.filter((key) => isLevelChecked[key]);
+
+		var languageKeys = Object.keys(isLanguageChecked);
+		var filteredLanguage = languageKeys.filter(
+			(key) => isLanguageChecked[key]
+		);
 
 		categoryQuery &&
-			api_getCourseByCategory(categoryQuery, `?page=${page}`).then(
-				(res) => {
-					setCourseData(res.data.data);
-					setIsLoading(false);
-				}
-			);
+			api_getCourseByCategory(
+				categoryQuery,
+				`?page=${page}${getLevel(filteredLevel)}${getLanguage(
+					filteredLanguage
+				)}`
+			).then((res) => {
+				setCourseData(res.data.data);
+				setIsLoading(false);
+			});
 
 		searchQuery &&
-			api_getQueryCourse(`?page=${page}&search=${searchQuery}`).then(
-				(res) => {
-					setCourseData(res.data.data);
-					setIsLoading(false);
-				}
-			);
+			api_getQueryCourse(
+				`?page=${page}&search=${searchQuery}${getLevel(
+					filteredLevel
+				)}${getLanguage(filteredLanguage)}`
+			).then((res) => {
+				setCourseData(res.data.data);
+				setIsLoading(false);
+			});
 	};
 
+	// console.log("isLevelChecked ===", isLevelChecked);
+	// console.log("isLanguageChecked ===", isLanguageChecked);
 	return (
 		<div className={cls.container}>
 			<Spinner open={isLoading} />
@@ -248,20 +299,19 @@ const Course = () => {
 					</div>
 
 					{/** Level Filter  */}
-					<div className={cls.filterBox}>
+					<div
+						className={cls.filterBox}
+						onClick={(e, type) =>
+							onClickCheckBoxHandler(e, "level")
+						}
+					>
 						<span>Level</span>
 						{!isLevelCheckBoxOpen ? (
 							<KeyboardArrowDownOutlined
-								onClick={(e, type) =>
-									onClickCheckBoxHandler(e, "level")
-								}
 								className={cls.filterDownArrow}
 							/>
 						) : (
 							<KeyboardArrowUpOutlined
-								onClick={(e, type) =>
-									onClickCheckBoxHandler(e, "level")
-								}
 								className={cls.filterDownArrow}
 							/>
 						)}
@@ -295,12 +345,12 @@ const Course = () => {
 				{!isLoading &&
 					categoryQuery &&
 					courseData.course.map((course) => {
-						return <CourseItem data={course} />;
+						return <CourseItem key={course._id} data={course} />;
 					})}
 				{!isLoading &&
 					searchQuery &&
 					courseData.map((course) => {
-						return <CourseItem data={course} />;
+						return <CourseItem key={course._id} data={course} />;
 					})}
 			</div>
 

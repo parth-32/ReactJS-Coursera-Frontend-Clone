@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import cls from "./course.module.css";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import {
 	Link,
 	Breadcrumbs,
@@ -15,7 +15,10 @@ import {
 } from "@mui/icons-material";
 import CourseItem from "./CourseItem";
 
-import { api_getCourseByCategory } from "../../helper/api_call.helper";
+import {
+	api_getCourseByCategory,
+	api_getQueryCourse,
+} from "../../helper/api_call.helper";
 import Spinner from "../loader/Loader";
 
 const DUMMY_DATA = [
@@ -42,58 +45,49 @@ const DUMMY_DATA = [
 	},
 ];
 
+const PAGE_SIZE = 4;
+
 var displayCheckbox = {};
 
 const Course = () => {
-	const [isDurationCheckBoxOpen, setDurationCheckBoxOpen] = useState(false);
+	const location = useLocation();
+	const history = useHistory();
+	const query = new URLSearchParams(location.search);
+	const searchQuery = query.get("search");
+	const categoryQuery = query.get("category");
+
 	const [isLevelCheckBoxOpen, setLevelCheckBoxOpen] = useState(false);
-	const [isSubjectCheckBoxOpen, setSubjectCheckBoxOpen] = useState(false);
 	const [isLanguageCheckBoxOpen, setLanguageCheckBoxOpen] = useState(false);
 
 	const [isLevelChecked, setIsLevelChecked] = useState({});
 	const [isLanguageChecked, setIsLanguageChecked] = useState({});
 
-	const params = useParams();
-
 	const [courseData, setCourseData] = useState([]);
+	const [paginationCount, setPaginationCount] = useState(0);
 	const [isLoading, setIsLoading] = useState(true);
 
 	const onClickCheckBoxHandler = (e, type) => {
 		e.preventDefault();
 		if (type === "level") setLevelCheckBoxOpen((state) => !state);
-		if (type === "duration") setDurationCheckBoxOpen((state) => !state);
-		if (type === "subject") setSubjectCheckBoxOpen((state) => !state);
+
 		if (type === "language") setLanguageCheckBoxOpen((state) => !state);
 	};
 
 	isLevelCheckBoxOpen && (displayCheckbox.level = { visibility: "visible" });
 	!isLevelCheckBoxOpen && (displayCheckbox.level = { visibility: "hidden" });
 
-	isDurationCheckBoxOpen &&
-		(displayCheckbox.duration = { visibility: "visible" });
-	!isDurationCheckBoxOpen &&
-		(displayCheckbox.duration = { visibility: "hidden" });
-
-	isSubjectCheckBoxOpen &&
-		(displayCheckbox.subject = { visibility: "visible" });
-	!isSubjectCheckBoxOpen &&
-		(displayCheckbox.subject = { visibility: "hidden" });
-
 	isLanguageCheckBoxOpen &&
 		(displayCheckbox.language = { visibility: "visible" });
 	!isLanguageCheckBoxOpen &&
 		(displayCheckbox.language = { visibility: "hidden" });
-
-	const { search } = useLocation();
-	const query = search.split("=").pop();
-	console.log("QUERY : ", query);
 
 	const breadcrumbs = [
 		<Link underline="hover" key="1" color="inherit" href="/">
 			Browse
 		</Link>,
 		<Typography className={cls.typography} key="2" color="inherit">
-			{!isLoading && courseData.category.name}
+			{!isLoading && categoryQuery && courseData.category.name}
+			{!isLoading && searchQuery && searchQuery}
 		</Typography>,
 	];
 
@@ -118,15 +112,59 @@ const Course = () => {
 	}, []);
 
 	useEffect(() => {
-		async function fetchCourse(categoryId) {
-			return await api_getCourseByCategory(categoryId);
-		}
+		//passing category id
+		categoryQuery &&
+			api_getCourseByCategory(categoryQuery).then((res) => {
+				setPaginationCount(
+					Math.ceil(res.data.data.course.length / PAGE_SIZE)
+				);
+			});
+		categoryQuery &&
+			api_getCourseByCategory(categoryQuery, "?page=1").then((res) => {
+				setCourseData(res.data.data);
+				setIsLoading(false);
+			});
 
-		fetchCourse(params.course).then((res) => {
-			setCourseData(res.data.data);
-			setIsLoading(false);
-		});
-	}, [levelChangeHandler, languageChangeHandler, params]);
+		//search value
+		searchQuery &&
+			api_getQueryCourse(`?search=${searchQuery}`).then((res) => {
+				setPaginationCount(Math.ceil(res.data.data.length / PAGE_SIZE));
+			});
+
+		searchQuery &&
+			api_getQueryCourse(`?search=${searchQuery}&page=1`).then((res) => {
+				setCourseData(res.data.data);
+				setIsLoading(false);
+			});
+
+		!categoryQuery && !searchQuery && history.replace("/browse");
+	}, [
+		levelChangeHandler,
+		languageChangeHandler,
+		categoryQuery,
+		searchQuery,
+		history,
+	]);
+
+	const paginationHandler = (e, page) => {
+		console.log("Page Number === ", page);
+
+		categoryQuery &&
+			api_getCourseByCategory(categoryQuery, `?page=${page}`).then(
+				(res) => {
+					setCourseData(res.data.data);
+					setIsLoading(false);
+				}
+			);
+
+		searchQuery &&
+			api_getQueryCourse(`?page=${page}&search=${searchQuery}`).then(
+				(res) => {
+					setCourseData(res.data.data);
+					setIsLoading(false);
+				}
+			);
+	};
 
 	return (
 		<div className={cls.container}>
@@ -145,17 +183,26 @@ const Course = () => {
 					</Breadcrumbs>
 				</Stack>
 				<div className={cls.courseHeading}>
-					{!isLoading && courseData.category.name} Courses
+					{!isLoading && categoryQuery && courseData.category.name}{" "}
+					{!isLoading && searchQuery && searchQuery} Courses
 				</div>
 			</div>
 
 			{/* Filter Section */}
 			<div className={cls.filterContainer}>
 				<h2 className={cls.totalCount}>
-					<span>
-						Showing {!isLoading && courseData.course.length} total
-						results for "{!isLoading && courseData.category.name}"
-					</span>
+					{!isLoading && categoryQuery && (
+						<span>
+							Showing {courseData.course.length} total results for
+							"{courseData.category.name}"
+						</span>
+					)}
+					{!isLoading && searchQuery && (
+						<span>
+							Showing {courseData.length} total results for "
+							{searchQuery}"
+						</span>
+					)}
 				</h2>
 				<p>Filter by</p>
 				<div className={cls.filterSection}>
@@ -182,7 +229,7 @@ const Course = () => {
 						>
 							{DUMMY_DATA[0].language.map((language) => {
 								return (
-									<label for={language.id}>
+									<label htmlFor={language.id}>
 										<input
 											type="checkbox"
 											id={language.id}
@@ -224,7 +271,7 @@ const Course = () => {
 						>
 							{DUMMY_DATA[0].level.map((level) => {
 								return (
-									<label for={level.id}>
+									<label htmlFor={level.id}>
 										<input
 											type="checkbox"
 											id={level.id}
@@ -240,58 +287,30 @@ const Course = () => {
 							})}
 						</div>
 					</div>
-
-					{/** Duration Filter  */}
-					<div
-						className={cls.filterBox}
-						onClick={(e, type) =>
-							onClickCheckBoxHandler(e, "duration")
-						}
-					>
-						<span>Duration</span>
-						{!isDurationCheckBoxOpen ? (
-							<KeyboardArrowDownOutlined
-								className={cls.filterDownArrow}
-							/>
-						) : (
-							<KeyboardArrowUpOutlined
-								className={cls.filterDownArrow}
-							/>
-						)}
-					</div>
-
-					{/** Subject Filter  */}
-					<div
-						className={cls.filterBox}
-						onClick={(e, type) =>
-							onClickCheckBoxHandler(e, "subject")
-						}
-					>
-						<span>Subject</span>
-						{!isSubjectCheckBoxOpen ? (
-							<KeyboardArrowDownOutlined
-								className={cls.filterDownArrow}
-							/>
-						) : (
-							<KeyboardArrowUpOutlined
-								className={cls.filterDownArrow}
-							/>
-						)}
-					</div>
 				</div>
 			</div>
 
 			{/* CourseList Section */}
 			<div className={cls.courseListContainer}>
 				{!isLoading &&
+					categoryQuery &&
 					courseData.course.map((course) => {
+						return <CourseItem data={course} />;
+					})}
+				{!isLoading &&
+					searchQuery &&
+					courseData.map((course) => {
 						return <CourseItem data={course} />;
 					})}
 			</div>
 
 			{/* Pagination */}
 			<div className={cls.pagination}>
-				<Pagination count={10} shape="rounded" />
+				<Pagination
+					count={!isLoading && paginationCount}
+					shape="rounded"
+					onChange={paginationHandler}
+				/>
 			</div>
 		</div>
 	);

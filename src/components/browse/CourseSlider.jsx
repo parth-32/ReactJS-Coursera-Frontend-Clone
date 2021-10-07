@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./courseSlider.scss";
 import SliderCard from "../../layout/SliderCard/SliderCard";
-import { api_getSliderCourse } from "../../helper/api_call.helper";
+import { api_getQueryCourse } from "../../helper/api_call.helper";
 
 const CourseSlider = (props) => {
 	var settings = {
@@ -22,7 +22,7 @@ const CourseSlider = (props) => {
 	const [headingText, setHeadingText] = useState("");
 
 	useEffect(() => {
-		api_getSliderCourse(`?filter=${props.sliderFor}`).then((res) => {
+		api_getQueryCourse(`?filter=${props.sliderFor}`).then((res) => {
 			setSliderData(res.data.data);
 
 			//set heading text

@@ -23,9 +23,12 @@ function App() {
 				<Switch>
 					<div className="App">
 						<Header />
-						<Route path="/course/:course">
+						<Route path="/course" exact>
 							<CoursePage />
 						</Route>
+						{/* <Route path="/course/:course">
+							<CoursePage />
+						</Route> */}
 						<Route path="/browse" exact>
 							<BrowsePage />
 						</Route>

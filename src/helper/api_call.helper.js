@@ -26,9 +26,9 @@ export const api_getCategory = async () => {
 	return result;
 };
 
-export const api_getCourseByCategory = async (categoryId) => {
+export const api_getCourseByCategory = async (categoryId, page = "") => {
 	const result = await axios.get(
-		"http://localhost:3210/course/" + categoryId
+		"http://localhost:3210/course/" + categoryId + page
 	);
 
 	return result;
@@ -86,8 +86,10 @@ export const api_getUserEnrolledCourse = async () => {
 	return result;
 };
 
-export const api_getSliderCourse = async (filter = "") => {
-	const result = await axios.get(`http://localhost:3210/course/all/slider${filter}`);
+export const api_getQueryCourse = async (filter = "") => {
+	const result = await axios.get(
+		`http://localhost:3210/course/all/query${filter}`
+	);
 
 	return result;
-}
+};

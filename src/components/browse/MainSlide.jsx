@@ -87,7 +87,7 @@ const MainSlider = () => {
 								key={Math.random()}
 								className="cardContainerMain"
 							>
-								<Link to={`/course/${data._id}`}>
+								<Link to={`/course?category=${data._id}`}>
 									<img src={data.image} alt="ig" />
 									<span>{data.name}</span>
 								</Link>

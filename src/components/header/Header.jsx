@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
 	KeyboardArrowDown,
 	NotificationsOutlined,
@@ -12,9 +12,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { authAction } from "../../store/auth_slice";
 
 const Header = () => {
+	// Redux Auth
 	const { isAuthenticated, userData } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
 	const history = useHistory();
+
+	//Search ref
+	const searchRef = useRef();
+
+	// For Explore Section
 	const [isHover, setIsHover] = useState(false);
 	const onCloseExplore = (e) => {
 		e.preventDefault();
@@ -28,30 +34,51 @@ const Header = () => {
 	const logoutHandler = () => {
 		dispatch(authAction.logout());
 	};
+
+	//search handler
+	const searchButtonHandler = (e) => {
+		e.preventDefault();
+		const searchValue = searchRef.current.value;
+		// console.log(searchValue);
+		searchRef.current.value = "";
+		history.push(`/course?search=${searchValue}`);
+	};
 	return (
 		<>
 			<div className="navbar">
 				<div className="symbol">
 					<span className="title">coursera</span>
 				</div>
+
+				{/* Explore Button */}
 				<div className="category">
 					<button
-						onMouseEnter={() => setIsHover(true)}
+						onClick={() => setIsHover((state) => !state)}
 						className="category_button"
 					>
 						Explore
 						<KeyboardArrowDown className="icons_down" />
 					</button>
 				</div>
+
+				{/* Search Bar */}
 				<div className="search">
 					<input
 						placeholder="What do you want to learn?"
 						className="search_input"
+						type="text"
+						ref={searchRef}
+						required
 					/>
-					<button className="search_button">
+					<button
+						className="search_button"
+						onClick={searchButtonHandler}
+					>
 						<Search className="search_icon" />
 					</button>
 				</div>
+
+				{/* Partnership  */}
 				<div className="options">
 					<p className="option_p">For Enterprise</p>
 					<p className="option_p">For Students</p>
@@ -60,6 +87,8 @@ const Header = () => {
 					</span>
 				</div>
 				<div className="vertical_line"></div>
+
+				{/* DropDown Menus */}
 				{!isAuthenticated && (
 					<>
 						<Link to="/login" className="loginLink">

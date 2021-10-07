@@ -64,13 +64,9 @@ const MainSlider = () => {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		async function getData() {
-			return await api_getCategory();
-		}
-
-		getData().then((data) => setData(data.data.data));
+		api_getCategory().then((data) => setData(data.data.data));
 	}, []);
-	console.log(data);
+	// console.log(data);
 	var settings = {
 		dots: true,
 		infinite: false,
@@ -87,7 +83,10 @@ const MainSlider = () => {
 				{data.length > 0 &&
 					data.map((data) => {
 						return (
-							<div className="cardContainerMain">
+							<div
+								key={Math.random()}
+								className="cardContainerMain"
+							>
 								<Link to={`/course/${data._id}`}>
 									<img src={data.image} alt="ig" />
 									<span>{data.name}</span>

@@ -85,3 +85,9 @@ export const api_getUserEnrolledCourse = async () => {
 
 	return result;
 };
+
+export const api_getSliderCourse = async (filter = "") => {
+	const result = await axios.get(`http://localhost:3210/course/all/slider${filter}`);
+
+	return result;
+}

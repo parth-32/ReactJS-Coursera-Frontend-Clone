@@ -12,6 +12,7 @@ import MyCoursePage from "./pages/MyCoursePage";
 import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
 import "./App.css";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
 	// auth states
@@ -68,6 +69,10 @@ function App() {
 							{isAuthenticated && (
 								<MyCoursePage type="completed" />
 							)}
+						</Route>
+						<Route>
+							{!isAuthenticated && <Login />}
+							<ProfilePage />
 						</Route>
 
 						{/* <Route path="*">

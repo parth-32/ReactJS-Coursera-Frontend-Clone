@@ -120,7 +120,7 @@ const Header = () => {
 									<Link to="/my_course">My Courses</Link>
 								</li>
 								<li>
-									<Link to="/my_course">Profile</Link>
+									<Link to="/profile">Profile</Link>
 								</li>
 								<li>
 									<Link to="/my_course">Settings</Link>

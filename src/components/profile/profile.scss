@@ -1,0 +1,138 @@
+.profileContainer {
+	margin-top: 71px;
+	background: white;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: row;
+
+	font-family: "Open Sans";
+
+	.profileLeft {
+		display: flex;
+		flex-direction: column;
+		padding: 100px;
+		background: aliceblue;
+
+		.nameLogo {
+			background: #aad7ff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50%;
+			height: 150px;
+			width: 150px;
+			font-size: 80px;
+			font-weight: 700;
+			color: #2323a7;
+			padding: 5px;
+		}
+
+		.profileName {
+			text-transform: capitalize;
+		}
+
+		.profileName,
+		.profileEmail {
+			color: #000000d9;
+			margin-top: 25px;
+			font-weight: 600;
+		}
+	}
+
+	.profileRight {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+
+		.profileCourseSummary {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			padding: 50px 100px;
+
+			.courseEnrolled {
+				display: flex;
+				flex-direction: column;
+				padding: 10px 50px;
+				box-shadow: 3px 3px 15px #dedede, -3px -3px 15px #dedede;
+
+				.summaryHeading {
+					font-size: 20px;
+					font-weight: 600;
+					color: gray;
+					padding: 10px 0px;
+				}
+
+				.summaryCaption {
+					font-weight: 200;
+					font-size: 32px;
+					color: var(--font-main-color);
+					font-family: "Poppins";
+				}
+			}
+		}
+
+		.certificateWrapper {
+			padding: 50px;
+			padding-top: 15px;
+			text-align: left;
+
+			.certificateHeading {
+				font-size: 30px;
+				color: var(--font-main-color);
+				font-weight: 100;
+			}
+
+			.certificateBody {
+				margin: 30px;
+				box-shadow: var(--main-shadow);
+				padding: 15px 30px;
+
+				.certificateInfo {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: space-between;
+					border: 1px solid #f3f3f3;
+					padding: 8px 20px;
+					margin: 10px;
+					border-radius: 5px;
+					background: #f9f9f9;
+					transition: all 0.2ms ease-in;
+
+					&:hover {
+						background: white;
+						border: 1px solid rgb(223, 223, 223);
+					}
+
+					.srNo {
+						color: gray;
+						width: 50px;
+					}
+
+					.courseName {
+						color: var(--main-color);
+						font-family: "Nunito";
+						text-decoration: none;
+						flex: 1;
+					}
+
+					.downloadIcon {
+						color: green;
+						cursor: pointer;
+						border: 1px solid #90e290;
+						border-radius: 50%;
+						padding: 3px;
+					}
+
+					.in_progress {
+						color: orange;
+						padding: 5px;
+					}
+				}
+			}
+		}
+	}
+}
+

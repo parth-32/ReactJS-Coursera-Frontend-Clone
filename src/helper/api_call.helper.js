@@ -93,3 +93,13 @@ export const api_getQueryCourse = async (filter = "") => {
 
 	return result;
 };
+
+export const api_getProfileMe = async () => {
+	const result = await axios.get("http://localhost:3210/auth/profile/me", {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem("token")}`,
+		},
+	});
+
+	return result;
+};

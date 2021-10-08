@@ -1,0 +1,82 @@
+.imageProvider {
+	margin: 0px;
+	height: 500px;
+	width: 800px;
+	background: white;
+	display: none;
+	flex-direction: column;
+
+	&.status {
+		display: flex;
+	}
+
+	.courseraHeading {
+		background: var(--main-color);
+		font-weight: 600;
+		font-size: 80px;
+		font-family: "Poppins", sans-serif;
+		letter-spacing: -2px;
+		color: white;
+		height: 126px;
+		width: -webkit-fill-available;
+		text-align: left;
+		padding: 0px 50px;
+	}
+
+	.imageBody {
+		display: flex;
+		flex-direction: column;
+		padding: 50px;
+		flex: 1;
+		.certify {
+			color: gray;
+			font-weight: 100;
+		}
+
+		.receiver {
+			// color: #2323a7;
+			color: var(--main-color);
+			font-size: 22px;
+			font-weight: 600;
+			padding: 8px 0px;
+			text-transform: capitalize;
+		}
+
+		.certificateCourseName {
+			font-size: 20px;
+			font-weight: 600;
+			font-family: "Poppins";
+			// color: #2323a7;
+			color: var(--main-color);
+			padding: 8px 0px;
+		}
+
+		.courseOfferBy {
+			font-weight: 100;
+			font-family: "Nunito";
+			font-size: 18px;
+			color: var(--font-main-color);
+		}
+	}
+
+	.imageFooter {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+
+		.issueDate {
+			font-size: 12px;
+			padding: 20px;
+			color: #bbbbbb;
+		}
+
+		.university {
+			padding: 20px 30px;
+			color: #2323a7;
+			font-family: "Open Sans";
+			font-weight: 200;
+			font-size: 20px;
+		}
+	}
+}

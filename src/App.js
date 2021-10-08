@@ -70,7 +70,7 @@ function App() {
 								<MyCoursePage type="completed" />
 							)}
 						</Route>
-						<Route>
+						<Route path="/profile">
 							{!isAuthenticated && <Login />}
 							<ProfilePage />
 						</Route>

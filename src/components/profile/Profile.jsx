@@ -161,6 +161,7 @@ const Profile = () => {
 								id={data.course._id}
 								course={data.course.title}
 								updatedAt={data.updatedAt}
+								offerBy={data.course.offer_by}
 							/>
 						);
 					})}

@@ -74,12 +74,6 @@ const ExploreSection = (props) => {
 					onlCloseEvent={(e) => onCloseHandler(e)}
 				/>
 			)}
-			{/* {
-				<SubjectDetails
-					id={hoverId || "data-science"}
-					onlCloseEvent={onCloseHandler}
-				/>
-			} */}
 		</section>
 	);
 };

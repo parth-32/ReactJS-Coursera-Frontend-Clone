@@ -23,7 +23,7 @@ const Header = () => {
 	// For Explore Section
 	const [isHover, setIsHover] = useState(false);
 	const onCloseExplore = (e) => {
-		e.preventDefault();
+		// e.preventDefault();
 		setIsHover(false);
 	};
 
@@ -123,10 +123,25 @@ const Header = () => {
 									<Link to="/profile">Profile</Link>
 								</li>
 								<li>
-									<Link to="/my_course">Settings</Link>
+									<span
+										to="/setting"
+										style={{
+											cursor: "not-allowed",
+											paddingLeft: "15px",
+										}}
+									>
+										Settings
+									</span>
 								</li>
 								<li>
-									<Link to="/my_course">Accomplishment</Link>
+									<span
+										style={{
+											cursor: "not-allowed",
+											paddingLeft: "15px",
+										}}
+									>
+										Accomplishment
+									</span>
 								</li>
 								<li>
 									<Link to="/" onClick={logoutHandler}>

@@ -4,14 +4,23 @@
 	min-height: 100vh;
 	display: flex;
 	flex-direction: row;
-
 	font-family: "Open Sans";
+
+	@media only screen and (max-width: 600px) {
+		min-height: fit-content;
+		display: flex;
+		flex-direction: column;
+	}
 
 	.profileLeft {
 		display: flex;
 		flex-direction: column;
 		padding: 100px;
 		background: aliceblue;
+
+		@media only screen and (max-width: 600px) {
+			padding: 30px;
+		}
 
 		.nameLogo {
 			background: #aad7ff;
@@ -25,6 +34,10 @@
 			font-weight: 700;
 			color: #2323a7;
 			padding: 5px;
+
+			@media only screen and (max-width: 600px) {
+				display: none;
+			}
 		}
 
 		.profileName {
@@ -51,11 +64,25 @@
 			justify-content: space-between;
 			padding: 50px 100px;
 
+			@media only screen and (max-width: 600px) {
+				padding: 20px;
+				display: flex;
+				flex-direction: column;
+			}
+
 			.courseEnrolled {
 				display: flex;
 				flex-direction: column;
 				padding: 10px 50px;
 				box-shadow: 3px 3px 15px #dedede, -3px -3px 15px #dedede;
+
+				@media only screen and (max-width: 600px) {
+					display: flex;
+					flex-direction: row;
+					width: 65vw;
+					margin: 12px;
+					justify-content: space-between;
+				}
 
 				.summaryHeading {
 					font-size: 20px;
@@ -78,6 +105,10 @@
 			padding-top: 15px;
 			text-align: left;
 
+			@media only screen and (max-width: 600px) {
+				padding: 10px;
+			}
+
 			.certificateHeading {
 				font-size: 30px;
 				color: var(--font-main-color);
@@ -88,6 +119,11 @@
 				margin: 30px;
 				box-shadow: var(--main-shadow);
 				padding: 15px 30px;
+
+				@media only screen and (max-width: 600px) {
+					padding: 5px 0px;
+					margin: 10px;
+				}
 
 				.certificateInfo {
 					display: flex;
@@ -101,6 +137,10 @@
 					background: #f9f9f9;
 					transition: all 0.2ms ease-in;
 
+					@media only screen and (max-width: 600px) {
+						background: #f1f1f1;
+					}
+
 					&:hover {
 						background: white;
 						border: 1px solid rgb(223, 223, 223);
@@ -109,6 +149,10 @@
 					.srNo {
 						color: gray;
 						width: 50px;
+
+						@media only screen and (max-width: 600px) {
+							width: 30px;
+						}
 					}
 
 					.courseName {
@@ -135,4 +179,3 @@
 		}
 	}
 }
-

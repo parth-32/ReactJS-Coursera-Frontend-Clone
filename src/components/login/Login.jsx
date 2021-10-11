@@ -46,7 +46,7 @@ const Login = () => {
 			//set password error
 			ALERT_TOAST = {
 				message:
-					"Password should contain Capital,small letter and digits",
+					"Password should contain Capital,small letter and digits with length of greater than 7",
 				type: "error",
 			};
 		} else {
@@ -55,7 +55,7 @@ const Login = () => {
 					email,
 					password,
 				});
-				console.log(response);
+
 				dispatch(
 					authAction.login({
 						token: response.data.token,
@@ -66,7 +66,7 @@ const Login = () => {
 					})
 				);
 
-				// history.replace("/browse");
+				history.replace("/browse");
 			} catch (e) {
 				console.log("ERROR=======", e?.response?.data?.message || e);
 				ALERT_TOAST = {

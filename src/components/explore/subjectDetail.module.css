@@ -30,7 +30,7 @@ p {
 }
 
 .part ul li {
-	padding: 5px 0px;
+	padding: 8px 0px;
 	font-size: 14px;
 	margin-left: -40px;
 }
@@ -109,12 +109,15 @@ h3 {
 }
 
 .headerMain {
+	background: white;
+	padding-top: 15px;
 	position: absolute;
 	width: 60%;
-	top: 15px;
+	top: 0;
 }
 
 .link {
 	text-decoration: none;
 	color: var(--font-main-color);
+	cursor: pointer;
 }

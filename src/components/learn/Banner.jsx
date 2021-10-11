@@ -2,11 +2,8 @@ import React from "react";
 import { Star } from "@mui/icons-material";
 import "./banner.scss";
 
-
 const Banner = (props) => {
 	const { data } = props;
-
-	
 
 	//Enrolling Course
 	const enrollCourseHandler = (e) => {

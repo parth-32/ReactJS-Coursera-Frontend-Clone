@@ -1,162 +1,27 @@
 import React, { useEffect, useState } from "react";
 import cls from "./subjectDetail.module.css";
 import { Close } from "@mui/icons-material";
+import { api_getCourseByCategory } from "../../helper/api_call.helper";
 
-// import { Link } from "react-router-dom";
-
-const DUMMY_DATA = [
-	{
-		id: "business",
-		popular_skills: [
-			"Project Management",
-			"Excel",
-			"Blockchain",
-			"Power BI",
-			"Design",
-		],
-		degrees: [
-			{
-				icon: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Uka_Tarsadia_University_Logo.png",
-				university: "Uka Tarsadiya University",
-				course: "Master in React Js",
-			},
-			{
-				icon: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Uka_Tarsadia_University_Logo.png",
-				university: "Uka Tarsadiya University",
-				course: "Master in Node Js",
-			},
-			{
-				icon: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Uka_Tarsadia_University_Logo.png",
-				university: "Uka Tarsadiya University",
-				course: "Master in Full stack",
-			},
-			{
-				icon: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Uka_Tarsadia_University_Logo.png",
-				university: "La net team",
-				course: "Master in Web Development",
-			},
-		],
-	},
-	{
-		id: "data-science",
-		popular_skills: [
-			"Project Management",
-			"Excel",
-			"Blockchain",
-			"Power BI",
-			"Design",
-		],
-		degrees: [
-			{
-				icon: "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-university-assets.s3.amazonaws.com/70/de505d47be7d3a063b51b6f856a6e2/New-Block-M-Stacked-Blue-295C_600x600.png?auto=format%2Ccompress&dpr=1&w=36&h=36",
-				university: "Uka Tarsadiya University",
-				course: "Master in React Js",
-			},
-			{
-				icon: "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-university-assets.s3.amazonaws.com/70/de505d47be7d3a063b51b6f856a6e2/New-Block-M-Stacked-Blue-295C_600x600.png?auto=format%2Ccompress&dpr=1&w=36&h=36",
-				university: "Uka Tarsadiya University",
-				course: "Master in Node Js",
-			},
-			{
-				icon: "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-university-assets.s3.amazonaws.com/70/de505d47be7d3a063b51b6f856a6e2/New-Block-M-Stacked-Blue-295C_600x600.png?auto=format%2Ccompress&dpr=1&w=36&h=36",
-				university: "Uka Tarsadiya University",
-				course: "Master in Full stack",
-			},
-			{
-				icon: "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-university-assets.s3.amazonaws.com/70/de505d47be7d3a063b51b6f856a6e2/New-Block-M-Stacked-Blue-295C_600x600.png?auto=format%2Ccompress&dpr=1&w=36&h=36",
-				university: "La net team",
-				course: "Master in Web Development",
-			},
-		],
-	},
-	{
-		id: "info-tech",
-		popular_skills: [
-			"Project Management",
-			"Excel",
-			"Blockchain",
-			"Power BI",
-			"Design",
-		],
-		degrees: [
-			{
-				icon: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Uka_Tarsadia_University_Logo.png",
-				university: "Uka Tarsadiya University",
-				course: "Master in React Js",
-			},
-			{
-				icon: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Uka_Tarsadia_University_Logo.png",
-				university: "Uka Tarsadiya University",
-				course: "Master in Node Js",
-			},
-			{
-				icon: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Uka_Tarsadia_University_Logo.png",
-				university: "Uka Tarsadiya University",
-				course: "Master in Full stack",
-			},
-			{
-				icon: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Uka_Tarsadia_University_Logo.png",
-				university: "La net team",
-				course: "Master in Web Development",
-			},
-		],
-	},
-	{
-		id: "computer-science",
-		popular_skills: [
-			"Project Management",
-			"Excel",
-			"Blockchain",
-			"Power BI",
-			"Design",
-		],
-		degrees: [
-			{
-				icon: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Uka_Tarsadia_University_Logo.png",
-				university: "Uka Tarsadiya University",
-				course: "Master in React Js",
-			},
-			{
-				icon: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Uka_Tarsadia_University_Logo.png",
-				university: "Uka Tarsadiya University",
-				course: "Master in Node Js",
-			},
-			{
-				icon: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Uka_Tarsadia_University_Logo.png",
-				university: "Uka Tarsadiya University",
-				course: "Master in Full stack",
-			},
-			{
-				icon: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Uka_Tarsadia_University_Logo.png",
-				university: "La net team",
-				course: "Master in Web Development full crash course 2021",
-			},
-		],
-	},
-];
 const SubjectDetails = (props) => {
-	const [skills, setSkills] = useState([]);
-	const [degrees, setDegrees] = useState([]);
-	const [subject, setSubject] = useState("");
-	const [isLoading, setIsLoading] = useState(false);
-	const { id } = props;
-	// console.log("id", id);
-	useEffect(() => {
-		setIsLoading(true);
-		const data = DUMMY_DATA.filter((data) => data.id === id);
-		setSubject(data[0].id);
-		setSkills(data[0].popular_skills);
-		setDegrees(data[0].degrees);
+	const [listData, setListData] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
-		setIsLoading(false);
-	}, [id]);
+	useEffect(() => {
+		api_getCourseByCategory(props.id, "?limit=2").then((res) => {
+			setListData(res.data.data);
+			setIsLoading(false);
+		});
+	}, [props.id]);
 
 	return (
 		<div className={cls.right_category_courses}>
 			{!isLoading && (
 				<>
 					<div className={cls.headerMain}>
-						<h3 className={cls.subjectTitle}>{subject}</h3>
+						<h3 className={cls.subjectTitle}>
+							{listData?.category?.name}
+						</h3>
 						<Close
 							onClick={props.onlCloseEvent}
 							className={cls.close}
@@ -173,42 +38,28 @@ const SubjectDetails = (props) => {
 								</ul>
 							</div>
 							<div className={cls.part}>
-								<h4 className={cls.topic_title}>
-									Popular Skills
-								</h4>
+								<h4 className={cls.topic_title}>Course</h4>
 								<ul>
-									{subject &&
-										skills.map((skill) => {
-											return (
-												<li key={`${Math.random()}`}>
-													{/* <Link
-														className={cls.link}
-														to={`/course?query=${skill
-															.toLowerCase()
-															.split(" ")
-															.join("-")}`}
-														on={
-															props.onlCloseEvent
-														}
-													>
-														{skill}
-													</Link> */}
-													<a
-														className={cls.link}
-														href={`/course?query=${skill
-															.toLowerCase()
-															.split(" ")
-															.join("-")}`}
-													>
-														{skill}
-													</a>
-												</li>
-											);
-										})}
+									{listData?.course.map((data) => {
+										return (
+											<li key={`${Math.random()}`}>
+												<span
+													className={cls.link}
+													onClick={(e, path) =>
+														props.onlCloseEvent(
+															`/course?search=${data.title}`
+														)
+													}
+												>
+													{data.title}
+												</span>
+											</li>
+										);
+									})}
 								</ul>
 							</div>
 						</div>
-						<div className={cls.secondPart}>
+						{/* <div className={cls.secondPart}>
 							<h4 className={cls.topic_title}>Degrees</h4>
 							<ul>
 								{degrees.map((data) => {
@@ -235,7 +86,7 @@ const SubjectDetails = (props) => {
 								})}
 							</ul>
 						</div>
-						<div className={cls.third}></div>
+						<div className={cls.third}></div> */}
 					</div>
 				</>
 			)}

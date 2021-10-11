@@ -10,15 +10,26 @@
 	background-position-x: right, right;
 	background-position-y: center, center;
 	background-repeat: no-repeat, no-repeat;
-
 	height: 500px;
 	width: -webkit-fill-available;
+
+	@media only screen and (max-width: 600px) {
+		background-image: none;
+		display: flex;
+		flex-direction: column;
+		height: fit-content;
+	}
 
 	.bannerBody {
 		display: flex;
 		flex-direction: column;
 		flex: 1;
-		padding-left: 50px;
+		padding: 30px;
+
+		@media only screen and (max-width: 600px) {
+			padding-left: 25px;
+			flex: content;
+		}
 
 		.bannerTitle {
 			color: var(--font-main-color);
@@ -26,6 +37,11 @@
 			font-family: "Open Sans";
 			font-size: 36px;
 			font-weight: 700;
+
+			@media only screen and (max-width: 600px) {
+				padding-top: 20px;
+				font-size: 32px;
+			}
 		}
 
 		.ratingInfo {
@@ -34,10 +50,18 @@
 			padding: 20px 0px;
 			align-items: center;
 
+			@media only screen and (max-width: 600px) {
+				padding: 8px 0px;
+			}
+
 			.ratingTotal {
 				font-size: 20px;
 				font-weight: 600;
 				margin-right: 15px;
+
+				@media only screen and (max-width: 600px) {
+					font-size: 18px;
+				}
 			}
 
 			.ratingStar {
@@ -67,6 +91,10 @@
 			align-items: center;
 			margin-top: 35px;
 
+			@media only screen and (max-width: 600px) {
+				margin-top: 10px;
+			}
+
 			.enrollForFreeBtn {
 				background: var(--main-color);
 				border: none;
@@ -78,6 +106,11 @@
 				border-radius: 5px;
 				cursor: pointer;
 				transition: all 0.2s ease-in;
+
+				@media only screen and (max-width: 600px) {
+					padding: 15px;
+					font-size: 14px;
+				}
 
 				&:hover {
 					background: rgb(50, 50, 206);
@@ -96,10 +129,19 @@
 		padding-top: 100px;
 		flex: 1;
 
+		@media only screen and (max-width: 600px) {
+			padding: 40px 30px;
+			flex: none;
+		}
+
 		.offerByText {
 			color: #888888;
 			font-size: 16px;
 			font-weight: 400;
+
+			@media only screen and (max-width: 600px) {
+				font-size: 14px;
+			}
 		}
 
 		.bannerUniversity {
@@ -108,6 +150,11 @@
 			max-width: 450px;
 			font-weight: 500;
 			font-family: "Nunito";
+
+			@media only screen and (max-width: 600px) {
+				font-size: 22px;
+				padding: 13px 0px;
+			}
 		}
 	}
 }

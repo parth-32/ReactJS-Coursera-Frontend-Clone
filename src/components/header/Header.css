@@ -232,3 +232,16 @@ input:focus {
 .dropdown_content ul li:hover {
 	background-color: var(--bg-main);
 }
+
+@media only screen and (max-width: 600px) {
+	.navbar {
+		display: flex;
+		flex-direction: column;
+		background: white;
+		height: fit-content;
+	}
+
+	.options {
+		display: none;
+	}
+}

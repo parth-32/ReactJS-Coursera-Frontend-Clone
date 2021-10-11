@@ -67,6 +67,7 @@ const MyCourse = (props) => {
 					courseData.map((data) => {
 						return (
 							<CourseItem
+								key={data.course._id}
 								title={props.type}
 								data={data}
 								isEmpty={false}

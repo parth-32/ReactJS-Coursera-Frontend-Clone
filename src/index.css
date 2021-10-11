@@ -20,10 +20,20 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	background: var(--bg-main);
 	position: relative;
-	overflow: auto;
+	overflow: auto !important;
 	overflow-y: scroll;
 }
 
 button {
 	cursor: pointer;
+}
+
+.css-79ws1d-MuiModal-root {
+	position: absolute !important;
+	z-index: 1300 !important;
+	display: flex;
+	top: 50% !important;
+	left: 50% !important;
+	margin-left: -280px;
+	margin-top: 50px;
 }

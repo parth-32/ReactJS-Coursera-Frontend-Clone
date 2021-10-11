@@ -10,11 +10,19 @@
 		text-align: left;
 		color: #404040;
 
+		@media only screen and (max-width: 600px) {
+			display: flex;
+			flex-direction: column-reverse;
+		}
+
 		.leftPart {
 			flex: 2;
-
 			padding: 50px;
 			float: left;
+
+			@media only screen and (max-width: 600px) {
+				padding: 30px;
+			}
 
 			.aboutCourseTitle {
 				color: #404040;
@@ -22,6 +30,10 @@
 				font-weight: 500;
 				margin: 0;
 				margin-bottom: 5px;
+
+				@media only screen and (max-width: 600px) {
+					font-weight: 700;
+				}
 			}
 
 			.aboutCourseDetail {
@@ -42,6 +54,10 @@
 				font-size: 14px;
 				margin-top: 60px;
 
+				@media only screen and (max-width: 600px) {
+					margin: 30px 0px;
+				}
+
 				.skillGain {
 					display: flex;
 					flex-direction: row;
@@ -57,6 +73,10 @@
 						border-radius: 50px;
 						text-transform: capitalize;
 						margin-right: 15px;
+
+						@media only screen and (max-width: 600px) {
+							margin: 5px;
+						}
 					}
 				}
 			}
@@ -68,11 +88,19 @@
 			display: flex;
 			flex-direction: column;
 
+			@media only screen and (max-width: 600px) {
+				padding: 30px;
+			}
+
 			.infoTag {
 				display: flex;
 				flex-direction: row;
 				align-items: flex-start;
 				margin: 20px 0px;
+
+				@media only screen and (max-width: 600px) {
+					margin: 15px 0px;
+				}
 
 				.infoIcon {
 					color: var(--main-color);
@@ -107,17 +135,23 @@
 	}
 
 	.instructorWrapper {
-		border: 1px solid gray;
 		color: #404040;
 		text-align: left;
 		padding: 10px 50px;
 
 		.instructorHeading {
-			color: black;
+			color: #404040;
+			font-size: 24px;
+			font-weight: 500;
+			margin: 0;
+			margin-bottom: 5px;
 		}
 
 		.instructorRating {
 			margin: 0;
+			font-weight: 100;
+			font-size: 13px;
+			padding: 10px 0px;
 		}
 
 		.instructorInfoWrapper {
@@ -126,8 +160,12 @@
 			align-items: center;
 
 			.instructorImg {
-				height: 200px;
-				width: 200px;
+				height: 130px;
+				width: 130px;
+				color: #404040;
+
+				border: 5px solid rgb(230, 230, 230);
+				margin: 5px 30px 10px 0px;
 			}
 
 			.instructorInfo {
@@ -136,12 +174,17 @@
 				flex-direction: column;
 
 				.instructorName {
-					font-size: 14px;
+					font-size: 16px;
 					text-transform: capitalize;
+					font-weight: 600;
+					margin: 0;
+					margin-bottom: 25px;
 				}
 
 				.instructorProfession {
 					margin: 0;
+					font-weight: 100;
+					margin-bottom: 5px;
 				}
 
 				.totalLearner,

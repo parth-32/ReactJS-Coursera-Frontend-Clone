@@ -129,7 +129,24 @@ h2 {
 	padding-bottom: 32px;
 }
 
+.filteredValueWrapper {
+	margin-top: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+}
 
+.filter {
+	background: var(--bg-main);
+	padding: 3px 10px;
+	border-radius: 50px;
+	margin: 3px;
+	font-weight: 200;
+	font-size: 14px;
+}
 
 .pagination {
 	background: white;
@@ -139,4 +156,36 @@ h2 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+	.breadcrumbsContainer {
+		padding: 20px;
+	}
+
+	.filterContainer {
+		background: rgb(247 247 247);
+		padding: 20px;
+	}
+
+	.courseListContainer {
+		background: white;
+		padding: 20px;
+		margin: 30px 0px;
+		padding-bottom: 32px;
+	}
+
+	.pagination {
+		background: white;
+		padding: 10px;
+		margin: 10px;
+		padding-bottom: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.container {
+		overflow-x: hidden;
+	}
 }

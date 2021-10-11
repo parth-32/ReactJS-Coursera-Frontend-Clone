@@ -83,10 +83,6 @@ const SignUp = () => {
 					})
 				);
 
-				emailRef.current.value = "";
-				nameRef.current.value = "";
-				passwordRef.current.value = "";
-
 				history.replace("/browse");
 			} catch (e) {
 				console.log("ERROR=======", e.response.data.message);

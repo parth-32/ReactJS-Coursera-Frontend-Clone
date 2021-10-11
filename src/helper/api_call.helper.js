@@ -103,3 +103,13 @@ export const api_getProfileMe = async () => {
 
 	return result;
 };
+
+export const api_checkAuth = async () => {
+	const result = await axios.get("http://localhost:3210/auth/check", {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem("token")}`,
+		},
+	});
+
+	return result;
+};

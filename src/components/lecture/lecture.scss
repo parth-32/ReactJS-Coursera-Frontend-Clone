@@ -5,6 +5,11 @@
 	flex-direction: row;
 	// padding: 0px 50px;
 
+	@media only screen and (max-width: 600px) {
+		display: flex;
+		flex-direction: column;
+	}
+
 	.sidebar {
 		overflow: auto;
 		overflow-y: scroll;
@@ -17,10 +22,27 @@
 		background-color: white;
 		padding-left: 20px;
 
+		@media only screen and (max-width: 600px) {
+			position: relative;
+			width: -webkit-fill-available;
+			height: -moz-fit-content;
+			height: fit-content;
+			top: 10px;
+			border-bottom: 1px solid #e4e4e4;
+		}
+
 		ul {
 			padding: 0px 5px !important;
 			/* margin: 0; */
 			text-align: left !important;
+
+			@media only screen and (max-width: 600px) {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				padding: 10px 20px;
+				transition: all 0.2s ease-in;
+			}
 		}
 
 		.menu {
@@ -32,6 +54,15 @@
 				padding: 10px 20px;
 				transition: all 0.2s ease-in;
 
+				@media only screen and (max-width: 600px) {
+					background: white;
+					margin: 5px;
+					width: 68px;
+					border: 1px solid var(--main-color);
+					border-radius: 50px;
+					text-align: center;
+				}
+
 				&:hover {
 					background: rgb(231, 231, 231);
 				}
@@ -39,13 +70,20 @@
 
 			a {
 				color: var(--font-main-color);
-
 				text-decoration: none;
 				font-size: 16px;
+
+				@media only screen and (max-width: 600px) {
+					font-size: 18px;
+				}
 
 				&:active,
 				&.activeLink {
 					font-weight: 700;
+
+					@media only screen and (max-width: 600px) {
+						font-weight: 800;
+					}
 				}
 			}
 		}

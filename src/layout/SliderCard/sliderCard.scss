@@ -12,10 +12,20 @@
 	outline: 1px solid #dedede;
 	font-family: var(--font-OpenSans);
 
+	@media only screen and (max-width: 600px) {
+		width: 80vw !important;
+		height: 60vh;
+		margin: 0px 40px;
+	}
+
 	.cardImg {
 		height: 150px;
 		position: relative;
 		z-index: 2;
+
+		@media only screen and (max-width: 600px) {
+			height: 26vh;
+		}
 
 		.coverImg {
 			height: 100%;

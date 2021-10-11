@@ -18,6 +18,7 @@ const Certificate = (props) => {
 			</div>
 			<div className="imageFooter">
 				<span className="issueDate">{props.updatedAt}</span>
+				<span className="refId">Ref ID: {props.enrollId}</span>
 				<div className="university">{props.offerBy}</div>
 			</div>
 		</section>

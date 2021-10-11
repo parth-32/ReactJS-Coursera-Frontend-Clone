@@ -1,15 +1,26 @@
+
+
 .box {
+	// position: absolute;
+	// top: 50%;
+	// left: 50%;
+	// transform: translate(-50%, -50%);
+	// width: 500px;
+	// background: white;
+	// padding: 32px;
+	// height: 600px;
+	// outline: none;
+	// // overflow: hidden;
+	// // overflow-y: scroll;
+	// border-radius: 10px;
+	// font-family: var(--font-openSans);
+
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	width: 500px;
 	background: white;
 	padding: 32px;
 	height: 600px;
 	outline: none;
-	// overflow: hidden;
-	// overflow-y: scroll;
 	border-radius: 10px;
 	font-family: var(--font-openSans);
 

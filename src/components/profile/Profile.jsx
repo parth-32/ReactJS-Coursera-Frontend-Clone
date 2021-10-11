@@ -159,6 +159,7 @@ const Profile = () => {
 								key={data.course._id}
 								user={profileData.user.name}
 								id={data.course._id}
+								enrollId={data._id}
 								course={data.course.title}
 								updatedAt={data.updatedAt}
 								offerBy={data.course.offer_by}

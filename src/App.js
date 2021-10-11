@@ -13,6 +13,7 @@ import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
 import "./App.css";
 import ProfilePage from "./pages/ProfilePage";
+import Footer from "./components/footer/Footer";
 
 function App() {
 	// auth states
@@ -27,9 +28,9 @@ function App() {
 						<Route path="/course" exact>
 							<CoursePage />
 						</Route>
-						{/* <Route path="/course/:course">
-							<CoursePage />
-						</Route> */}
+						<Route path="/" exact>
+							<BrowsePage />
+						</Route>
 						<Route path="/browse" exact>
 							<BrowsePage />
 						</Route>
@@ -78,6 +79,7 @@ function App() {
 						{/* <Route path="*">
 							<Redirect to="/" />
 						</Route> */}
+						<Footer />
 					</div>
 				</Switch>
 			</BrowserRouter>

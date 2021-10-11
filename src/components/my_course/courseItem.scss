@@ -21,13 +21,25 @@
 		padding: 20px;
 		box-shadow: 3px 3px 10px #c1c1c1;
 
+		@media only screen and (max-width: 600px) {
+			padding: 10px;
+			margin: 10px;
+			border-radius: 5px;
+		}
+
 		&:first-child {
 			margin-top: 20px;
 		}
 
 		.coverImg {
-			height: 132px;
-			width: 132px;
+			height: 100px;
+			width: 100px;
+
+			@media only screen and (max-width: 600px) {
+				height: 60px;
+				width: 60px;
+				display: none;
+			}
 		}
 
 		.bodyInfo {
@@ -41,14 +53,23 @@
 			.offer_by {
 				color: gray;
 				font-size: 14px;
+
+				@media only screen and (max-width: 600px) {
+					display: none;
+				}
 			}
 
 			.courseTitle {
 				text-decoration: none;
 				padding: 20px 0px;
 				color: var(--main-color);
-				font-size: 28px;
+				font-size: 20px;
 				font-weight: 600;
+
+				@media only screen and (max-width: 600px) {
+					font-size: 14px;
+					font-weight: 500;
+				}
 			}
 		}
 
@@ -57,6 +78,10 @@
 			display: flex;
 			align-items: center;
 
+			@media only screen and (max-width: 600px) {
+				width: 71px;
+			}
+
 			.goToCourse {
 				text-decoration: none;
 				background: var(--main-color);
@@ -64,6 +89,11 @@
 				padding: 15px 25px;
 				font-family: "Open Sans";
 				transition: all 0.2s ease-in;
+
+				@media only screen and (max-width: 600px) {
+					padding: 10px;
+					border-radius: 10px;
+				}
 
 				&:hover {
 					background: rgb(47, 47, 202);

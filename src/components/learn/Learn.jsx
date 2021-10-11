@@ -30,16 +30,18 @@ const Learn = () => {
 		//Get Course
 		api_getCourseById(params.course).then((res) => {
 			setCourseData(res.data.data);
-		});
 
-		//Get Enrolled Status
-		api_getEnrolledCourseStatus(params.course).then((res) => {
-			if (res.data.data) {
-				setIsEnrolled(true);
-			}
+			//Get Enrolled Status for display on button
+			auth.isAuthenticated &&
+				api_getEnrolledCourseStatus(params.course).then((res) => {
+					if (res.data.data) {
+						setIsEnrolled(true);
+					}
+					setIsLoading(false);
+				});
 			setIsLoading(false);
 		});
-	}, [params]);
+	}, [auth.isAuthenticated, params]);
 
 	const enrollCourseHandler = (weekId) => {
 		if (auth.isAuthenticated && !!auth.token) {
@@ -77,7 +79,7 @@ const Learn = () => {
 								<div className="skillGain">
 									{courseData.skill_gain.map((skill) => {
 										return (
-											<span className="skill">
+											<span key={skill} className="skill">
 												{skill}
 											</span>
 										);

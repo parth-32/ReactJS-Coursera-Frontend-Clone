@@ -21,7 +21,7 @@ import {
 } from "../../helper/api_call.helper";
 import Spinner from "../loader/Loader";
 
-const DUMMY_DATA = [
+const FILTER_OPTIONS = [
 	{
 		language: [
 			{ id: "English", language: "English" },
@@ -56,11 +56,17 @@ const Course = () => {
 	const searchQuery = query.get("search");
 	const categoryQuery = query.get("category");
 
+	//for checking filter are open or close
 	const [isLevelCheckBoxOpen, setLevelCheckBoxOpen] = useState(false);
 	const [isLanguageCheckBoxOpen, setLanguageCheckBoxOpen] = useState(false);
 
+	//for checking filter checkbox selected or not
 	const [isLevelChecked, setIsLevelChecked] = useState({});
 	const [isLanguageChecked, setIsLanguageChecked] = useState({});
+
+	//for selected checkbox
+	const [filteredLevel, setFilteredLevel] = useState([]);
+	const [filteredLanguage, setFilteredLanguage] = useState([]);
 
 	const [courseData, setCourseData] = useState([]);
 	const [paginationCount, setPaginationCount] = useState(0);
@@ -74,13 +80,13 @@ const Course = () => {
 		if (type === "language") setLanguageCheckBoxOpen((state) => !state);
 	};
 
-	isLevelCheckBoxOpen && (displayCheckbox.level = { visibility: "visible" });
-	!isLevelCheckBoxOpen && (displayCheckbox.level = { visibility: "hidden" });
+	displayCheckbox.level = {
+		visibility: isLevelCheckBoxOpen ? "visible" : "hidden",
+	};
 
-	isLanguageCheckBoxOpen &&
-		(displayCheckbox.language = { visibility: "visible" });
-	!isLanguageCheckBoxOpen &&
-		(displayCheckbox.language = { visibility: "hidden" });
+	displayCheckbox.language = {
+		visibility: isLanguageCheckBoxOpen ? "visible" : "hidden",
+	};
 
 	const breadcrumbs = [
 		<Link underline="hover" key="1" color="inherit" href="/">
@@ -128,27 +134,30 @@ const Course = () => {
 		var filteredLanguage = languageKeys.filter(
 			(key) => isLanguageChecked[key]
 		);
+		setFilteredLevel(filteredLevel);
+		setFilteredLanguage(filteredLanguage);
 
 		//passing category id
 		categoryQuery &&
 			api_getCourseByCategory(
-				`${categoryQuery}${getLevel(filteredLevel)}${getLanguage(
-					filteredLanguage
-				)}`
+				categoryQuery,
+				`?${getLevel(filteredLevel)}${getLanguage(filteredLanguage)}`
 			).then((res) => {
+				//set pagination size
 				setPaginationCount(
 					Math.ceil(res.data.data.course.length / PAGE_SIZE)
 				);
-			});
-		categoryQuery &&
-			api_getCourseByCategory(
-				categoryQuery,
-				`?page=1${getLevel(filteredLevel)}${getLanguage(
-					filteredLanguage
-				)}`
-			).then((res) => {
-				setCourseData(res.data.data);
-				setIsLoading(false);
+
+				//for storing data
+				api_getCourseByCategory(
+					categoryQuery,
+					`?page=1${getLevel(filteredLevel)}${getLanguage(
+						filteredLanguage
+					)}`
+				).then((res) => {
+					setCourseData(res.data.data);
+					setIsLoading(false);
+				});
 			});
 
 		//search value
@@ -159,16 +168,15 @@ const Course = () => {
 				)}`
 			).then((res) => {
 				setPaginationCount(Math.ceil(res.data.data.length / PAGE_SIZE));
-			});
 
-		searchQuery &&
-			api_getQueryCourse(
-				`?search=${searchQuery}&page=1${getLevel(
-					filteredLevel
-				)}${getLanguage(filteredLanguage)}`
-			).then((res) => {
-				setCourseData(res.data.data);
-				setIsLoading(false);
+				api_getQueryCourse(
+					`?search=${searchQuery}&page=1${getLevel(
+						filteredLevel
+					)}${getLanguage(filteredLanguage)}`
+				).then((res) => {
+					setCourseData(res.data.data);
+					setIsLoading(false);
+				});
 			});
 
 		!categoryQuery && !searchQuery && history.replace("/browse");
@@ -192,6 +200,9 @@ const Course = () => {
 		var filteredLanguage = languageKeys.filter(
 			(key) => isLanguageChecked[key]
 		);
+
+		setFilteredLevel(filteredLevel);
+		setFilteredLanguage(filteredLanguage);
 
 		categoryQuery &&
 			api_getCourseByCategory(
@@ -278,7 +289,7 @@ const Course = () => {
 							className={`${cls.checkboxes}`}
 							style={displayCheckbox.language}
 						>
-							{DUMMY_DATA[0].language.map((language) => {
+							{FILTER_OPTIONS[0].language.map((language) => {
 								return (
 									<label htmlFor={language.id}>
 										<input
@@ -319,7 +330,7 @@ const Course = () => {
 							className={`${cls.checkboxes}`}
 							style={displayCheckbox.level}
 						>
-							{DUMMY_DATA[0].level.map((level) => {
+							{FILTER_OPTIONS[0].level.map((level) => {
 								return (
 									<label htmlFor={level.id}>
 										<input
@@ -338,6 +349,19 @@ const Course = () => {
 						</div>
 					</div>
 				</div>
+
+				{/* If filter is applied then display it here */}
+				{(filteredLanguage.length > 0 || filteredLevel.length > 0) && (
+					<div className={cls.filteredValueWrapper}>
+						{filteredLanguage.map((data) => {
+							return <span className={cls.filter}>{data}</span>;
+						})}
+
+						{filteredLevel.map((data) => {
+							return <span className={cls.filter}>{data}</span>;
+						})}
+					</div>
+				)}
 			</div>
 
 			{/* CourseList Section */}
@@ -357,7 +381,7 @@ const Course = () => {
 			{/* Pagination */}
 			<div className={cls.pagination}>
 				<Pagination
-					count={!isLoading && paginationCount}
+					count={!isLoading ? paginationCount : 0}
 					shape="rounded"
 					onChange={paginationHandler}
 				/>

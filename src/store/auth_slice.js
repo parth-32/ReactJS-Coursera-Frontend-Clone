@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 var token;
 var isAuthenticated;
 var userData;
+
 if (
 	localStorage.getItem("token") === undefined ||
 	localStorage.getItem("token") === false ||

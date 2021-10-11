@@ -65,7 +65,8 @@
 		align-items: center;
 		justify-content: space-between;
 
-		.issueDate {
+		.issueDate,
+		.refId {
 			font-size: 12px;
 			padding: 20px;
 			color: #bbbbbb;

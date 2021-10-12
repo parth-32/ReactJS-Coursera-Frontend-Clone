@@ -47,7 +47,7 @@
 					.verification {
 						padding: 8px 10px;
 						border: 1px solid #e0e0e0;
-						border-radius: 4px;
+						border-radius: 3px 0px 0px 3px;
 						color: gray;
 						font-family: "Open Sans";
 						width: -webkit-fill-available;
@@ -57,11 +57,11 @@
 						padding: 9px;
 						background: var(--main-color);
 						border: none;
-						margin-left: -5px;
 						color: white;
 						font-family: "Open Sans";
 						cursor: pointer;
 						transition: all 0.2ms ease-in;
+						border-radius: 0px 3px 3px 0px;
 
 						&:active {
 							transform: scale(0.98);

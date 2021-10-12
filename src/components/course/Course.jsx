@@ -354,11 +354,25 @@ const Course = () => {
 				{(filteredLanguage.length > 0 || filteredLevel.length > 0) && (
 					<div className={cls.filteredValueWrapper}>
 						{filteredLanguage.map((data) => {
-							return <span className={cls.filter}>{data}</span>;
+							return (
+								<span
+									key={Math.random()}
+									className={cls.filter}
+								>
+									{data}
+								</span>
+							);
 						})}
 
 						{filteredLevel.map((data) => {
-							return <span className={cls.filter}>{data}</span>;
+							return (
+								<span
+									key={Math.random()}
+									className={cls.filter}
+								>
+									{data}
+								</span>
+							);
 						})}
 					</div>
 				)}

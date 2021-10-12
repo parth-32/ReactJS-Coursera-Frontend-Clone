@@ -18,7 +18,8 @@ body {
 	font-family: "Nunito", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background: var(--bg-main);
+	/* background: var(--bg-main); */
+	background: white;
 	position: relative;
 	overflow: auto !important;
 	overflow-y: scroll;

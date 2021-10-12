@@ -113,3 +113,11 @@ export const api_checkAuth = async () => {
 
 	return result;
 };
+
+export const api_verifyCertificate = async (refId) => {
+	const result = await axios.get(
+		"http://localhost:3210/enroll/verify/certificate/" + refId
+	);
+
+	return result;
+};

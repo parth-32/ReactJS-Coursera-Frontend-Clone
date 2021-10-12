@@ -39,18 +39,18 @@ const LectureWeek = (props) => {
 	const week = weeks.filter((week) => week._id === params.weekId)[0];
 
 	const videoProgressEvent = (progress) => {
-		console.log("PROGRESS ====", progress);
+		// console.log("PROGRESS ====", progress);
 		if (progress.played >= 0.98) {
-			console.log("FINISHED");
+			// console.log("FINISHED");
 			props.onWeekFinish(params.weekId);
 			setIsFinished(true);
 		}
 	};
 
 	const videoDurationEvent = (duration) => {
-		console.log("DURATION (s)==== ", duration);
+		// console.log("DURATION (s)==== ", duration);
 		setDuration(secondsToHms(duration));
-		console.log("DURATION (time)==== ", secondsToHms(duration));
+		// console.log("DURATION (time)==== ", secondsToHms(duration));
 	};
 
 	return (

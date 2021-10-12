@@ -2,7 +2,6 @@
 	overflow: auto;
 	display: flex;
 	text-align: left;
-	margin-left: 22%;
 	flex-direction: column;
 	width: 100%;
 	padding: 10px 50px;
@@ -10,6 +9,7 @@
 	color: var(--font-main-color);
 	min-height: 100vh;
 	height: -webkit-fill-available;
+	padding-bottom: 50px;
 
 	@media only screen and (max-width: 600px) {
 		margin: 0;

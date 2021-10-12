@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "./courseSlider.scss";
 import SliderCard from "../../layout/SliderCard/SliderCard";
 import { api_getQueryCourse } from "../../helper/api_call.helper";
+import CustomNextArrow from "./CustomNextArrow";
+import CustomPrevArrow from "./CustomPrevArrow";
 
 const CourseSlider = (props) => {
 	var settings = {
@@ -13,6 +15,8 @@ const CourseSlider = (props) => {
 		speed: 500,
 		slidesToShow: 4,
 		slidesToScroll: 4,
+		prevArrow: <CustomPrevArrow />,
+		nextArrow: <CustomNextArrow />,
 		responsive: [
 			{
 				breakpoint: 1024,

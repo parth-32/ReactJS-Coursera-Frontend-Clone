@@ -3,8 +3,9 @@
 	flex-direction: column;
 	padding: 80px 150px;
 	background: white;
-	border-top: 1px solid #a5a5a5;
-    
+	border-top: 1px solid #c5c5c5;
+	font-family: var(--font-openSans);
+
 	.footerWrapper {
 		color: var(--font-main-color);
 		display: flex;
@@ -31,6 +32,144 @@
 					font-size: 14px;
 					padding: 3px 0px;
 					font-weight: 100;
+				}
+
+				.getItOn {
+					margin: 10px 0px;
+				}
+
+				.verificationWrapper {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					height: 50px;
+
+					.verification {
+						padding: 8px 10px;
+						border: 1px solid #e0e0e0;
+						border-radius: 4px;
+						color: gray;
+						font-family: "Open Sans";
+						width: -webkit-fill-available;
+					}
+
+					.verifyBtn {
+						padding: 9px;
+						background: var(--main-color);
+						border: none;
+						margin-left: -5px;
+						color: white;
+						font-family: "Open Sans";
+						cursor: pointer;
+						transition: all 0.2ms ease-in;
+
+						&:active {
+							transform: scale(0.98);
+						}
+					}
+				}
+			}
+		}
+	}
+	.copyrightWrapper {
+		color: gray;
+		padding-top: 50px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		border-top: 1px solid gray;
+		margin-top: 23px;
+
+		.followOn {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+
+			.followIcon {
+				color: white;
+				border-radius: 50%;
+				background: var(--font-main-color);
+				padding: 5px;
+				margin: 5px;
+			}
+		}
+	}
+}
+
+.verifyModalContainer {
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	border: 1px solid black;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);
+	overflow-y: auto;
+	transition: all 0.3ms ease-in;
+
+	.verifyBox {
+		background: white;
+		height: 400px;
+		width: 500px;
+		top: 0;
+		left: 0;
+		margin: 100px;
+		margin-left: 514px;
+		display: flex;
+		flex-direction: column;
+		font-family: var(--font-openSans);
+
+		.verifyHeader {
+			display: flex;
+			flex-direction: row;
+			align-items: flex-start;
+			justify-content: space-between;
+			padding: 10px 23px;
+
+			.Heading {
+				font-size: 26px;
+			}
+		}
+
+		.verifyBody {
+			display: flex;
+			flex-direction: column;
+			margin: 50px;
+
+			.verification {
+				font-size: 16px;
+				white-space: pre-wrap;
+				/* text-align: left; */
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: flex-start;
+				align-items: center;
+				padding: 10px 0px;
+
+				font-weight: 300;
+
+				.verificationName {
+					flex: 0.4;
+					text-align: left;
+				}
+
+				.verificationStatus {
+					text-align: left;
+					flex: 1;
+					font-weight: 400;
+					text-transform: capitalize;
+
+					&.verified {
+						color: green;
+					}
+
+					&.unverified {
+						color: red;
+						padding-left: 63px;
+						font-weight: 500;
+					}
 				}
 			}
 		}

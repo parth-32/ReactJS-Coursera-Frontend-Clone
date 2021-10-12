@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Alerts = (props) => {
-	console.log("alert rendered");
+	// console.log("alert rendered");
 	var toast_popup;
 	const { type, message } = props;
 
@@ -41,20 +41,6 @@ const Alerts = (props) => {
 	}
 
 	return toast_popup;
-	// return (
-	// 	<ToastContainer
-	// 		position="top-right"
-	// 		autoClose={3000}
-	// 		hideProgressBar
-	// 		newestOnTop={true}
-	// 		closeOnClick
-	// 		rtl={false}
-	// 		pauseOnFocusLoss
-	// 		draggable
-	// 		pauseOnHover
-	// 		limit={5}
-	// 	/>
-	// );
 };
 
 export default Alerts;

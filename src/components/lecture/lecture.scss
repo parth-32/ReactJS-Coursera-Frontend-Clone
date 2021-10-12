@@ -12,10 +12,8 @@
 
 	.sidebar {
 		overflow: auto;
-		overflow-y: scroll;
-		height: 100%;
+		height: fit-content;
 		width: 20%;
-		position: fixed;
 		z-index: 1;
 		top: 71px;
 		left: 0;
@@ -72,6 +70,7 @@
 				color: var(--font-main-color);
 				text-decoration: none;
 				font-size: 16px;
+				font-weight: 100;
 
 				@media only screen and (max-width: 600px) {
 					font-size: 18px;
@@ -79,7 +78,7 @@
 
 				&:active,
 				&.activeLink {
-					font-weight: 700;
+					font-weight: 900;
 
 					@media only screen and (max-width: 600px) {
 						font-weight: 800;

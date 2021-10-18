@@ -68,8 +68,10 @@ const Course = () => {
 	const [filteredLevel, setFilteredLevel] = useState([]);
 	const [filteredLanguage, setFilteredLanguage] = useState([]);
 
+	//set data
 	const [courseData, setCourseData] = useState([]);
 	const [paginationCount, setPaginationCount] = useState(0);
+	const [showingTotalRes, setShowingTotalRes] = useState(0);
 
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -147,6 +149,7 @@ const Course = () => {
 				setPaginationCount(
 					Math.ceil(res.data.data.course.length / PAGE_SIZE)
 				);
+				setShowingTotalRes(res.data.data.course.length);
 
 				//for storing data
 				api_getCourseByCategory(
@@ -168,6 +171,7 @@ const Course = () => {
 				)}`
 			).then((res) => {
 				setPaginationCount(Math.ceil(res.data.data.length / PAGE_SIZE));
+				setShowingTotalRes(res.data.data.length);
 
 				api_getQueryCourse(
 					`?search=${searchQuery}&page=1${getLevel(
@@ -228,6 +232,7 @@ const Course = () => {
 
 	// console.log("isLevelChecked ===", isLevelChecked);
 	// console.log("isLanguageChecked ===", isLanguageChecked);
+	console.log(showingTotalRes);
 	return (
 		<div className={cls.container}>
 			<Spinner open={isLoading} />
@@ -255,13 +260,13 @@ const Course = () => {
 				<h2 className={cls.totalCount}>
 					{!isLoading && categoryQuery && (
 						<span>
-							Showing {courseData.course.length} total results for
-							"{courseData.category.name}"
+							Showing {showingTotalRes} total results for "
+							{courseData.category.name}"
 						</span>
 					)}
 					{!isLoading && searchQuery && (
 						<span>
-							Showing {courseData.length} total results for "
+							Showing {showingTotalRes} total results for "
 							{searchQuery}"
 						</span>
 					)}
@@ -387,7 +392,7 @@ const Course = () => {
 					})}
 				{!isLoading &&
 					searchQuery &&
-					courseData.map((course) => {
+					courseData?.map((course) => {
 						return <CourseItem key={course._id} data={course} />;
 					})}
 			</div>

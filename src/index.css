@@ -25,6 +25,10 @@ body {
 	overflow-y: scroll;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 button {
 	cursor: pointer;
 }

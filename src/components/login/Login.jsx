@@ -25,7 +25,7 @@ const Login = () => {
 
 	const handleClose = () => {
 		setOpen(false);
-		history.push("/");
+		history.push("/browse");
 	};
 
 	const formSubmitHandler = async (e) => {
@@ -84,7 +84,7 @@ const Login = () => {
 			onClose={handleClose}
 			aria-labelledby="modal-modal-title"
 			aria-describedby="modal-modal-description"
-			style={{ background: "rgba(0,0,0,0.5)" }}
+			// style={{ background: "rgba(0,0,0,0.5)" }}
 		>
 			<section className="box">
 				<span className="ModalHeader">

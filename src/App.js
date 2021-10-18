@@ -1,5 +1,11 @@
 import React from "react";
-import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
+import {
+	Switch,
+	Route,
+	BrowserRouter,
+	Redirect,
+	
+} from "react-router-dom";
 import { useSelector } from "react-redux";
 import Header from "./components//header/Header";
 
@@ -16,6 +22,7 @@ import ProfilePage from "./pages/ProfilePage";
 import Footer from "./components/footer/Footer";
 
 function App() {
+	
 	// auth states
 	const { isAuthenticated } = useSelector((state) => state.auth);
 

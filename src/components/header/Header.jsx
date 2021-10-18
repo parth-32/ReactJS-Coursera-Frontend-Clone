@@ -17,6 +17,8 @@ const Header = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 
+	
+
 	//Search ref
 	const searchRef = useRef();
 
@@ -144,7 +146,7 @@ const Header = () => {
 									</span>
 								</li>
 								<li>
-									<Link to="/" onClick={logoutHandler}>
+									<Link to="/browse" onClick={logoutHandler}>
 										Logout
 									</Link>
 								</li>
